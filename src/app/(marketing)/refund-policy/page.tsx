@@ -1,0 +1,2 @@
+import { InfoPage } from "@/components/marketing/info-page";
+export default function RefundPolicyPage() { return <InfoPage eyebrow="LEGAL" title="Refund Policy"><p>Refund eligibility product type, access activation এবং consumed digital content-এর ওপর নির্ভর করবে। কোনো refund request support email-এর মাধ্যমে order invoice সহ submit করতে হবে।</p><p>Approved refund PayStation transaction status re-verify করে original payment channel অনুযায়ী process হবে; dashboard-এ status update হতে সময় লাগতে পারে।</p></InfoPage>; }

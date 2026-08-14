@@ -1,0 +1,4 @@
+-- Production imported 21 PII-limited public certificate projections from the
+-- historical backup. The records are intentionally excluded from source
+-- control; run scripts/extract-public-certificates.py against an authorized
+-- backup and review the sanitized JSON before an environment-specific import.
