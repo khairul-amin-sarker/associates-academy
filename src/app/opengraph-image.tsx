@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
 
-/* eslint-disable @next/next/no-img-element -- ImageResponse renders its own image tree. */
-
 export const alt =
   "Associates Academy — Tax, VAT, Legal & Professional Learning";
 export const size = { width: 1200, height: 630 };
