@@ -49,7 +49,7 @@ Lovable-managed, ZiniPay brand-domain re-registration, dark-mode usage, MCP rete
 **DB impact:** `20260814174622_standalone_foundation`, `20260814183047_function_acl_and_indexes`, and `20260814183652_import_public_certificates`; production received the fresh normalized schema and 21 PII-minimized public certificate records.
 **Docs updated:** `README.md`, `PROJECT.md`, `architecture.md`, `backend.md`, `UI.md`, `design.md`, `flows.md`, `analytics.md`, `security.md`, `MIGRATION.md`, `design-qa.md`
 **Verification:** brand scan, ESLint, strict TypeScript, Vitest, production build, Supabase RLS/advisor inspection, and in-app browser QA at 1440px and 390px across homepage, course, checkout, dashboard, CMS, certificate and consent journeys.
-**Risk / follow-up:** live PayStation, branded domain/email, external Meta/GA4/Sentry credentials, required private course files, and the separately billed Supabase staging project remain launch gates.
+**Risk / follow-up:** live PayStation, branded domain/email, external Meta/GA4/Sentry credentials and required private course files remain launch gates. The separate zero-cost staging project is active.
 
 ---
 
