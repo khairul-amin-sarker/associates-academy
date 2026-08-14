@@ -1,6 +1,8 @@
+const vercelUrl = process.env.VERCEL_URL;
+
 export const siteConfig = {
   name: "Associates Academy",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? (vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000"),
   productionUrl: "https://associatesacademy.com.bd",
   description: "আয়কর, ভ্যাট, আইন ও Professional Compliance শেখার নির্ভরযোগ্য প্ল্যাটফর্ম।",
   supportEmail: "support@associatesacademy.com.bd",
