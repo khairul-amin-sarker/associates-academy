@@ -3,13 +3,13 @@ import { LegalPage } from "@/components/marketing/legal-page";
 import { legalPages } from "@/lib/content/legal";
 
 export const metadata: Metadata = {
-  title: "Return & Refund Policy",
+  title: "Delivery Policy",
   description:
-    "Associates Academy return and refund policy for live courses, eBooks, duplicate payments and failed orders.",
+    "Associates Academy delivery policy for live courses, dashboards, eBooks and other digital materials.",
 };
 
-export default function RefundPolicyPage() {
-  const page = legalPages.refund;
+export default function DeliveryPolicyPage() {
+  const page = legalPages.delivery;
   return (
     <LegalPage
       eyebrow={page.eyebrow}

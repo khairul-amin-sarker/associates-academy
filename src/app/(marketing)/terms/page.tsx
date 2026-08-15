@@ -1,2 +1,25 @@
-import { InfoPage } from "@/components/marketing/info-page";
-export default function TermsPage() { return <InfoPage eyebrow="LEGAL" title="Terms of Use"><p>Course, eBook ও workshop access ব্যক্তিগত এবং অনুমোদিত learner-এর জন্য। কোনো paid resource অনুমতি ছাড়া পুনঃপ্রচার বা resell করা যাবে না।</p><p>Class schedule, access duration, certificate criteria এবং resource availability সংশ্লিষ্ট program page ও dashboard setting অনুযায়ী প্রযোজ্য হবে।</p></InfoPage>; }
+import type { Metadata } from "next";
+import { LegalPage } from "@/components/marketing/legal-page";
+import { legalPages } from "@/lib/content/legal";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description:
+    "Associates Academy website, course, eBook and digital service terms and conditions.",
+};
+
+export default function TermsPage() {
+  const page = legalPages.terms;
+  return (
+    <LegalPage
+      eyebrow={page.eyebrow}
+      title={page.title}
+      description={page.description}
+      lastUpdated={page.lastUpdated}
+      sections={[
+        ...page.intro.map((paragraph) => ({ paragraphs: [paragraph] })),
+        ...page.sections,
+      ]}
+    />
+  );
+}

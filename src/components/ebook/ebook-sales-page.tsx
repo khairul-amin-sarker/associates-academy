@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { toast } from "sonner";
+import { CheckoutConsent } from "@/components/checkout/checkout-consent";
 import {
   ebook,
   ebookAudience,
@@ -31,6 +33,7 @@ import {
   ebookPreviewPages,
   ebookStats,
 } from "@/lib/content/ebook";
+import { businessInfo, complianceLinks } from "@/lib/content/legal";
 
 function Section({
   id,
@@ -702,8 +705,9 @@ function BuySection() {
           disabled={loading}
           className="ebook-shadow-lift mt-6 w-full rounded-2xl bg-[color:var(--indigo)] px-6 py-4 text-base font-extrabold text-white transition active:scale-[0.98] disabled:opacity-60"
         >
-          {loading ? "অপেক্ষা করুন…" : "পেমেন্ট করুন"}
+          {loading ? "অপেক্ষা করুন…" : "পেমেন্ট করুন / Pay Now"}
         </button>
+        <CheckoutConsent className="mt-3 text-center" />
         <p className="text-blue mt-3 text-center text-xs">
           bKash · Nagad · Rocket — পেমেন্ট server-side verify করা হয়।
         </p>
@@ -742,56 +746,98 @@ function EbookFooter() {
           </div>
           <div>
             <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Contact
-            </div>
-            <a
-              href={`https://wa.me/${ebook.whatsappNumber}`}
-              className="mt-3 inline-flex items-center gap-2 text-sm text-white hover:text-[color:var(--gold)]"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp: 01712192758
-            </a>
-          </div>
-          <div>
-            <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Legal
+              Explore
             </div>
             <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link href="/terms" className="text-white/80 hover:text-white">
-                  Terms
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-white/80 hover:text-white"
-                >
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/refund-policy"
-                  className="text-white/80 hover:text-white"
-                >
-                  Refund Policy
-                </Link>
-              </li>
+              {[
+                { label: "Home", href: "/" },
+                { label: "Courses", href: "/courses" },
+                { label: "eBooks / Resources", href: "/ebook" },
+                { label: "About Us", href: "/about" },
+                {
+                  label: "Contact / Business Address",
+                  href: "/business-address",
+                },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href as Route}
+                    className="text-white/80 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
             <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Course
+              Legal & Policies
             </div>
-            <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>Fundamentals of Income Tax Act, 2023</li>
-              <li>৬ Live Class · Bangla</li>
-              <li>Certificate on completion</li>
+            <ul className="mt-3 space-y-2 text-sm">
+              {complianceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href as Route}
+                    className="text-white/80 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
+          <div>
+            <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
+              Business Information
+            </div>
+            <dl className="mt-3 space-y-2 text-sm text-white/80">
+              <div>
+                <dt className="text-white/50">Registered Business:</dt>
+                <dd className="font-semibold text-white">
+                  {businessInfo.registeredBusinessName}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/50">Trade License:</dt>
+                <dd className="font-semibold text-white">
+                  {businessInfo.tradeLicense}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/50">Phone:</dt>
+                <dd>
+                  {businessInfo.phones.map((phone, index) => (
+                    <a
+                      key={phone}
+                      href={businessInfo.phoneHrefs[index]}
+                      className="block hover:text-white"
+                    >
+                      {phone}
+                    </a>
+                  ))}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/50">Email:</dt>
+                <dd>
+                  <a
+                    href={`mailto:${businessInfo.email}`}
+                    className="break-all hover:text-white"
+                  >
+                    {businessInfo.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-white/50">Address:</dt>
+                <dd>{businessInfo.address}</dd>
+              </div>
+            </dl>
           </div>
         </div>
         <div className="relative mx-auto mt-10 max-w-6xl border-t border-white/10 px-4 pt-6 text-xs text-white/60">
-          © 2026 Associates Academy — Professional Training
+          © 2026 Associates Academy. All Rights Reserved.
         </div>
       </footer>
     </div>

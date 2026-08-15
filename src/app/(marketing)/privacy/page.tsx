@@ -1,2 +1,6 @@
-import { InfoPage } from "@/components/marketing/info-page";
-export default function PrivacyPage() { return <InfoPage eyebrow="LEGAL" title="Privacy Policy"><p>Account, purchase, course access, certificate এবং support পরিচালনার জন্য প্রয়োজনীয় তথ্য সংগ্রহ করা হয়। Payment card/mobile-wallet credentials Associates Academy সংরক্ষণ করে না।</p><p>Anonymous analytics default-ভাবে active থাকে; page-এর privacy control থেকে opt out করলে GA4, Meta এবং first-party future collection বন্ধ হয় এবং anonymous session identifier মুছে যায়।</p><p>ডেটা access role-based এবং Supabase Row Level Security দিয়ে নিয়ন্ত্রিত।</p></InfoPage>; }
+import type { Route } from "next";
+import { redirect } from "next/navigation";
+
+export default function PrivacyAliasPage() {
+  redirect("/privacy-policy" as Route);
+}
