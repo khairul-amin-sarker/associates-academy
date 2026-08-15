@@ -18,7 +18,21 @@ Newest entries at the top. Every agent must append an entry after any change.
 
 ---
 
+## 2026-08-15 — eBook reference UI restored
+
+**Agent:** Codex
+**Type:** fix
+**Scope:** `/ebook`, marketing chrome, scoped design tokens, eBook content/assets, visual QA
+**Change:** Rebuilt the standalone eBook route from the supplied production screenshot, inspected live page, and historical source. Restored the complete sales funnel, original book artwork, responsive header/footer, FAQ, inline checkout form, and mobile sticky CTA while retaining the current PayStation endpoint.
+**DB impact:** none
+**Docs updated:** `UI.md`, `design.md`, `design-qa.md`, `logs.md`
+**Verification:** normalized full-page and focused browser comparisons, 1218px desktop and 390px mobile overflow checks, CTA/FAQ/form-state tests, console check, and `pnpm check` (brand, ESLint, TypeScript, Vitest, production build).
+**Risk / follow-up:** the current standalone payment API still requires authentication; two sales-page support sentences intentionally reflect that current behavior instead of the historical guest-checkout wording.
+
+---
+
 ## 2026-08-14 — AI handoff documentation system created
+
 **Agent:** Lovable
 **Type:** docs
 **Scope:** `AGENTS.md`, `PROJECT.md`, `architecture.md`, `backend.md`, `UI.md`, `design.md`,
@@ -34,7 +48,7 @@ new. No application code, database, auth or configuration was changed.
 analytics ID and workflow was cross-checked against `src/routes/**`, `src/lib/*.functions.ts`,
 `src/styles.css`, `vite.config.ts`, `src/start.ts`, `supabase/migrations/**` and the live
 Supabase schema/function listing.
-**Risk / follow-up:** items marked *Needs Verification* in `PROJECT.md` and `MIGRATION.md`
+**Risk / follow-up:** items marked _Needs Verification_ in `PROJECT.md` and `MIGRATION.md`
 (Google identity continuity off the Lovable OAuth broker, whether the Supabase project stays
 Lovable-managed, ZiniPay brand-domain re-registration, dark-mode usage, MCP retention).
 `docs/codex-handoff/**` is an older Firebase-oriented plan and is now superseded for stack facts.
@@ -42,6 +56,7 @@ Lovable-managed, ZiniPay brand-domain re-registration, dark-mode usage, MCP rete
 ---
 
 ## 2026-08-15 — Standalone Next.js rebuild implemented
+
 **Agent:** Codex
 **Type:** feature
 **Scope:** public website, student dashboard, admin console, CMS, payments, analytics, auth, storage, database, tests and deployment configuration
@@ -54,5 +69,6 @@ Lovable-managed, ZiniPay brand-domain re-registration, dark-mode usage, MCP rete
 ---
 
 ## Before 2026-08-14
+
 Change history prior to this entry is not recorded here; see git history and
 `supabase/migrations/**` (49 migrations) for the authoritative record.

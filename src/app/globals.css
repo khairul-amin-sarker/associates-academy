@@ -28,6 +28,12 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-gold: var(--brand-gold);
   --color-brand-cream: var(--brand-cream);
+  --color-cream: var(--cream);
+  --color-surface: var(--surface);
+  --color-navy: var(--navy);
+  --color-indigo: var(--indigo);
+  --color-blue: var(--blue);
+  --color-gold: var(--gold);
   --color-success: var(--success);
   --font-sans:
     "Hind Siliguri", "Noto Sans Bengali", ui-sans-serif, system-ui, sans-serif;
@@ -66,6 +72,12 @@
   --input: #d8cfbf;
   --ring: #4b5694;
   --success: #2d7d46;
+  --cream: var(--brand-cream);
+  --surface: var(--card);
+  --navy: var(--brand-navy);
+  --indigo: var(--brand-indigo);
+  --blue: var(--brand-blue);
+  --gold: var(--brand-gold);
   --radius: 0.75rem;
 }
 
@@ -126,6 +138,47 @@
 
   .focus-ring {
     @apply focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+  }
+
+  .ebook-page {
+    --cream: #eae0cf;
+    --surface: #ffffff;
+    --navy: #111844;
+    --indigo: #4b5694;
+    --blue: #7288ae;
+    --gold: #c9a24c;
+    --muted: #f5efe1;
+    --border: #d9cdb6;
+    --input: #e4d8bf;
+    --destructive: #b4342b;
+    background: linear-gradient(180deg, #eae0cf 0%, #f1e8d8 100%);
+  }
+
+  .ebook-bg-dots {
+    background-image: radial-gradient(rgb(17 24 68 / 0.1) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .ebook-bg-dots-navy {
+    background-image: radial-gradient(
+      rgb(255 255 255 / 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 18px 18px;
+  }
+
+  .ebook-shadow-soft {
+    box-shadow:
+      0 8px 24px -12px rgb(17 24 68 / 0.18),
+      0 2px 6px -2px rgb(17 24 68 / 0.08);
+  }
+
+  .ebook-shadow-lift {
+    box-shadow: 0 20px 40px -24px rgb(17 24 68 / 0.35);
+  }
+
+  .ebook-gradient-navy {
+    background: linear-gradient(135deg, #111844 0%, #1b245c 60%, #4b5694 100%);
   }
 }
 

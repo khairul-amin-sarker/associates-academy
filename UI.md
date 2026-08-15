@@ -4,7 +4,7 @@
 
 Homepage: sticky navigation, academy hero, offers, featured program, academy reasons, learning journey, founder, genuine trust, resources, final CTA and footer.
 
-Course landing preserves the cream/navy editorial language with a strong navy hero, curriculum sequence, outcomes, inclusions, FAQ and final CTA. eBook uses real contents previews. Workshop and verification remain focused flows.
+Course landing preserves the cream/navy editorial language with a strong navy hero, curriculum sequence, outcomes, inclusions, FAQ and final CTA. The eBook route uses its focused legacy sales-page chrome, cream dotted hero, problem/solution cards, six-module overview, learning outcomes, audience cards, eight real page previews, author profile, pricing, FAQ, final CTA and inline checkout. Workshop and verification remain focused flows.
 
 ## Student
 
@@ -17,6 +17,7 @@ Combined command center follows the selected mock: grouped navy sidebar, KPI ban
 ## Responsive/accessibility
 
 - 390px and 1440px are core visual QA sizes
+- eBook also preserves the historical `max-w-6xl` layout and route-specific mobile sticky purchase CTA
 - Mobile navigation/admin sidebar use accessible sheets
 - Visible focus, medium-speed press states, reduced-motion support
 - No horizontal overflow; Bengali wrapping and touch targets are tested
