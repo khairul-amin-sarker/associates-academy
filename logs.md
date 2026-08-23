@@ -1102,7 +1102,7 @@ Risk / follow-up:
 - Initial version used offline/memory fallback; Phase 2 was scheduled for database persistence and admin console.
 
 Commit:
-- pending
+- `f1d6dc2`
 
 ## LOG-0024 — 2026-08-23 — Workshop UI Refinements and WhatsApp Community Access
 
@@ -1134,7 +1134,7 @@ Risk / follow-up:
 - Real Google Meet link remains private and is shared exclusively through the WhatsApp Community.
 
 Commit:
-- pending
+- `f1d6dc2`
 
 ## LOG-0025 — 2026-08-23 — Workshop Multi-Tenant Schema Architecture & Registration Persistence
 
@@ -1176,7 +1176,7 @@ Risk / follow-up:
 - Admin management console required to monitor registrations and track conversions.
 
 Commit:
-- pending
+- `f1d6dc2`
 
 ## LOG-0026 — 2026-08-23 — Workshop Admin Operations Console & Campaign Attribution Tracking
 
@@ -1229,4 +1229,5 @@ Risk / follow-up:
 - Ready for production deployment and Meta ad campaign launch.
 
 Commit:
-- pending
+- `f1d6dc2`
+
