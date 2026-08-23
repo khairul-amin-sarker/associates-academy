@@ -49,9 +49,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (slug === practicalReturnCourse.slug) {
     const title =
-      "Practical Paper Return & NBR E-Return Filing Course | Finance Act 2026";
+      "Practical Paper Return & E-Return Filing Course | Associates Academy";
     const description =
-      "Finance Act 2026 ও Assessment Year 2026–2027 অনুযায়ী হাতে-কলমে Income Tax Return Filing শিখুন। Client documents যাচাই, 7 Heads of Income, Tax Computation, TDS/AIT, Tax Rebate, IT10B, IT10BB, Paper Return ও NBR e-Return submission—একটি complete client case দিয়ে।";
+      "Finance Act 2026 ও Assessment Year 2026–2027 ভিত্তিক Practical Paper Return & E-Return Filing Course। Income computation, Tax Rebate, TDS, IT10B, IT10BB, Paper Return এবং NBR E-Return preparation হাতে-কলমে শিখুন।";
 
     return {
       title,

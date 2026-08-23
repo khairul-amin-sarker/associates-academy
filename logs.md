@@ -1231,3 +1231,54 @@ Risk / follow-up:
 Commit:
 - `f1d6dc2`
 
+## LOG-0027 — 2026-08-23 — Practical Return & E-Return Course Page Targeted Refinement Pass
+
+Files changed:
+
+- `src/components/marketing/practical-return-course-page.tsx`
+- `src/components/analytics/analytics-runtime.tsx`
+- `logs.md`
+
+Summary of changes:
+
+- Implemented a targeted visual and structural refinement pass on the Practical Paper Return & E-Return Filing Course landing page (`/courses/practical-paper-return-e-return-filing`):
+  1. **Hero Image Hierarchy & Composition**:
+     - Reversed visual dominance: NBR E-Return Portal screenshot is now the primary hero visual (~70% width, upper-right, in foreground with sharp borders and crisp contrast).
+     - Paper Return Form IT-11GA screenshot is now supporting (~42% width, lower-left, -1deg rotation, overlapping slightly behind).
+     - Mobile composition adapts seamlessly without horizontal overflow or clipped borders.
+  2. **Return Preparation Workflow (4 + 2 Sequence)**:
+     - Fixed awkward orphan wrapping on desktop screens.
+     - Structured into an intentional, connected 4 + 2 sequence:
+       - Row 1: Steps 01 (Documents) → 02 (Income Classification) → 03 (Computation) → 04 (Tax & Reconciliation).
+       - Connected downward "Next" pathway leading from Step 04 to Step 05.
+       - Row 2: Steps 05 (Paper Return / E-Return) → 06 (Final Review & Submission).
+       - Mobile renders as a clean vertical sequence with downward connectors.
+  3. **Course Information Content & Narrative**:
+     - Formatted the left-side human editorial narrative (4 detailed paragraphs explaining return preparation challenges, legal theory vs. practical execution, case-based methodology, and taxpayer vs. practitioner utility).
+     - Configured a 63/37% desktop grid ratio with comfortable paragraph spacing, paired with the right-side sticky Batch Overview factual metadata panel.
+  4. **Final Enrollment / Pricing Section**:
+     - Built an integrated, balanced two-column container panel on a deep navy background (`bg-brand-navy`).
+     - Left column: Course title, Batch 1 badge, schedule details, and 3 subtle supporting facts (AY 2026-2027, Paper Return + NBR E-Return, Verified Certificate).
+     - Right column: Pricing card with current dominant fee (৳1,600), regular fee (৳2,000), discount badge (৳400 ছাড়), prominent Gold CTA button (`কোর্সে ভর্তি হোন`), and automatic enrollment confirmation note.
+     - Mobile stacks sequentially with full-width action button.
+- Fixed ESLint `@next/next/no-img-element` rule on Meta Pixel fallback `<noscript>` in `src/components/analytics/analytics-runtime.tsx`.
+
+Data / DB impact:
+
+- None.
+
+Validation:
+
+- ESLint: 0 errors, 0 warnings (`npm run lint`).
+- TypeScript: 0 errors (`npx tsc --noEmit`).
+- Browser Subagent Visual QA: Verified desktop (1440px/1280px) and mobile (390px) viewports; confirmed responsive hero image layering, 4+2 workflow continuity, editorial line-height, sticky course overview panel, and two-column navy enrollment card.
+- All artifact screenshots recorded and archived in `.system_generated`.
+
+Risk / follow-up:
+
+- None.
+
+Commit:
+- pending
+
+
