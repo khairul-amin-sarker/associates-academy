@@ -19,6 +19,7 @@ export type WorkshopActionState = {
     email: string;
     mobile: string;
     profession?: string;
+    workshopIntent?: string;
     registrationCode?: string;
   };
 };
@@ -247,6 +248,8 @@ export async function registerForWorkshopAction(
             fullName: registrationData.fullName,
             email: registrationData.email,
             mobile: registrationData.mobile,
+            profession: registrationData.profession,
+            workshopIntent: registrationData.workshopIntent,
             registrationCode: regCode,
           },
         };
@@ -263,6 +266,7 @@ export async function registerForWorkshopAction(
         email: registrationData.email,
         mobile: registrationData.mobile,
         profession: registrationData.profession,
+        workshopIntent: registrationData.workshopIntent,
         registrationCode: regCode,
       },
     };
@@ -280,6 +284,7 @@ export async function registerForWorkshopAction(
         email: registrationData.email,
         mobile: registrationData.mobile,
         profession: registrationData.profession,
+        workshopIntent: registrationData.workshopIntent,
         registrationCode: fallbackCode,
       },
     };

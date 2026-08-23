@@ -21,6 +21,8 @@ const metaNames: Record<string, string> = {
   checkout_started: "InitiateCheckout",
   payment_initiated: "AddPaymentInfo",
   verified_purchase: "Purchase",
+  workshop_registration: "Lead",
+  lead: "Lead",
 };
 
 function base64Url(value: string | ArrayBuffer) {

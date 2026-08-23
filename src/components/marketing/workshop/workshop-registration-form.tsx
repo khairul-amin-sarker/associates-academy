@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 import {
   AlertCircle,
   ArrowRight,
@@ -24,6 +24,7 @@ import {
   registerForWorkshopAction,
   type WorkshopActionState,
 } from "@/app/(marketing)/workshop/actions";
+import { trackAnalyticsEvent } from "@/components/analytics/analytics-runtime";
 import { WhatsAppIcon } from "./whatsapp-icon";
 
 const initialWorkshopActionState: WorkshopActionState = {
@@ -44,6 +45,24 @@ export function WorkshopRegistrationForm({ initialWorkshop }: WorkshopRegistrati
     registerForWorkshopAction,
     initialWorkshopActionState,
   );
+
+  useEffect(() => {
+    if (state.status === "success") {
+      trackAnalyticsEvent("workshop_registration", {
+        workshop_id: workshopConfig.id,
+        registration_code: state.registrationCode,
+        intent: state.submittedData?.workshopIntent,
+      });
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", {
+          content_name: workshopConfig.title,
+          content_category: "Workshop Registration",
+          value: 0,
+          currency: "BDT",
+        });
+      }
+    }
+  }, [state.status, state.registrationCode, state.submittedData]);
 
   const isClosed =
     state.status === "closed" ||
