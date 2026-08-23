@@ -1,8 +1,6 @@
 "use client";
 
-import type { Route } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import {
@@ -22,6 +20,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { CheckoutConsent } from "@/components/checkout/checkout-consent";
+import { SiteFooter } from "@/components/marketing/site-footer";
+import { SiteHeader } from "@/components/marketing/site-header";
 import {
   ebook,
   ebookAudience,
@@ -33,7 +33,6 @@ import {
   ebookPreviewPages,
   ebookStats,
 } from "@/lib/content/ebook";
-import { businessInfo, complianceLinks } from "@/lib/content/legal";
 
 function Section({
   id,
@@ -121,44 +120,7 @@ export function EbookSalesPage() {
 
   return (
     <main className="ebook-page text-navy min-h-screen overflow-x-clip">
-      <header className="sticky top-0 z-40 border-b border-[color:var(--border)]/70 bg-[color:var(--cream)]/90 backdrop-blur supports-[backdrop-filter]:bg-[color:var(--cream)]/75">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 sm:px-6 sm:py-3">
-          <Link
-            href="/"
-            aria-label="Associates Academy হোম"
-            className="focus-ring flex min-w-0 items-center gap-2 rounded-lg"
-          >
-            <Image
-              src="/brand/logo.png"
-              alt="Associates Academy"
-              width={44}
-              height={44}
-              priority
-              className="h-7 w-7 shrink-0 object-contain sm:h-9 sm:w-9"
-            />
-            <span className="font-heading text-navy truncate text-sm font-extrabold sm:text-lg">
-              Associates Academy
-            </span>
-          </Link>
-          <div className="flex shrink-0 items-center gap-2">
-            <a
-              href={`https://wa.me/${ebook.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-navy hidden rounded-xl border border-[color:var(--border)] bg-white px-3 py-2 text-sm font-bold sm:inline-flex"
-            >
-              WhatsApp
-            </a>
-            <button
-              type="button"
-              onClick={openBuy}
-              className="ebook-shadow-soft rounded-xl bg-[color:var(--navy)] px-3 py-2 text-xs font-bold whitespace-nowrap text-white transition active:scale-[0.98] sm:px-4 sm:text-sm"
-            >
-              ইবুকটি কিনুন
-            </button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <Section className="ebook-bg-dots">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
@@ -719,127 +681,7 @@ function BuySection() {
 function EbookFooter() {
   return (
     <div className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:pb-0">
-      <footer className="ebook-gradient-navy relative overflow-hidden pt-14 pb-8 text-white">
-        <div className="ebook-bg-dots-navy absolute inset-0 opacity-60" />
-        <div className="relative mx-auto grid max-w-6xl gap-8 px-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <Image
-                src="/brand/logo-source.png"
-                alt=""
-                width={80}
-                height={80}
-                className="h-20 w-20 rounded-2xl bg-white object-cover"
-              />
-              <div>
-                <div className="font-heading font-extrabold">
-                  Associates Academy
-                </div>
-                <div className="text-xs text-white/60">
-                  Professional Tax &amp; Legal Education
-                </div>
-              </div>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-white/70">
-              Bangla-তে পেশাদার Tax, VAT ও Legal Compliance training।
-            </p>
-          </div>
-          <div>
-            <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Explore
-            </div>
-            <ul className="mt-3 space-y-2 text-sm">
-              {[
-                { label: "Home", href: "/" },
-                { label: "Courses", href: "/courses" },
-                { label: "eBooks / Resources", href: "/ebook" },
-                { label: "About Us", href: "/about" },
-                {
-                  label: "Contact / Business Address",
-                  href: "/business-address",
-                },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href as Route}
-                    className="text-white/80 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Legal & Policies
-            </div>
-            <ul className="mt-3 space-y-2 text-sm">
-              {complianceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href as Route}
-                    className="text-white/80 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-bold tracking-widest text-white/60 uppercase">
-              Business Information
-            </div>
-            <dl className="mt-3 space-y-2 text-sm text-white/80">
-              <div>
-                <dt className="text-white/50">Registered Business:</dt>
-                <dd className="font-semibold text-white">
-                  {businessInfo.registeredBusinessName}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-white/50">Trade License:</dt>
-                <dd className="font-semibold text-white">
-                  {businessInfo.tradeLicense}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-white/50">Phone:</dt>
-                <dd>
-                  {businessInfo.phones.map((phone, index) => (
-                    <a
-                      key={phone}
-                      href={businessInfo.phoneHrefs[index]}
-                      className="block hover:text-white"
-                    >
-                      {phone}
-                    </a>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-white/50">Email:</dt>
-                <dd>
-                  <a
-                    href={`mailto:${businessInfo.email}`}
-                    className="break-all hover:text-white"
-                  >
-                    {businessInfo.email}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="text-white/50">Address:</dt>
-                <dd>{businessInfo.address}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-        <div className="relative mx-auto mt-10 max-w-6xl border-t border-white/10 px-4 pt-6 text-xs text-white/60">
-          © 2026 Associates Academy. All Rights Reserved.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

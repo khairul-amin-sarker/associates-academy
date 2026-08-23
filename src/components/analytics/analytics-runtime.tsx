@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 
 const preferenceKey = "aa_analytics_preference";
 const sessionKey = "aa_analytics_session";
+const openPreferenceEvent = "aa:open-analytics-preferences";
 
 declare global {
   interface Window {
@@ -123,6 +124,13 @@ function Runtime() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname, preference]);
 
+  useEffect(() => {
+    const openPreferencePanel = () => setPanelOpen(true);
+    window.addEventListener(openPreferenceEvent, openPreferencePanel);
+    return () =>
+      window.removeEventListener(openPreferenceEvent, openPreferencePanel);
+  }, []);
+
   const disable = useCallback(() => {
     window.localStorage.setItem(preferenceKey, "disabled");
     window.localStorage.removeItem(sessionKey);
@@ -149,15 +157,6 @@ function Runtime() {
           {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${metaPixelId}');`}
         </Script>
       ) : null}
-
-      <button
-        type="button"
-        onClick={() => setPanelOpen(true)}
-        className="focus-ring border-brand-navy/15 text-brand-navy fixed right-3 bottom-3 z-50 flex h-10 w-10 items-center justify-center rounded-full border bg-white/95 shadow-lg backdrop-blur sm:right-5 sm:bottom-5"
-        aria-label="Analytics privacy settings"
-      >
-        <ShieldCheck className="h-4 w-4" aria-hidden />
-      </button>
 
       {panelOpen ? (
         <div
@@ -210,6 +209,23 @@ export function AnalyticsRuntime() {
     <Suspense fallback={null}>
       <Runtime />
     </Suspense>
+  );
+}
+
+export function AnalyticsPreferenceTrigger({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new Event(openPreferenceEvent))}
+      className={className}
+      aria-label="Analytics privacy settings"
+    >
+      <ShieldCheck className="h-4 w-4" aria-hidden />
+    </button>
   );
 }
 

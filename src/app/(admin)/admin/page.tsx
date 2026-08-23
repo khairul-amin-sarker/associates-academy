@@ -94,9 +94,16 @@ export default async function AdminPage() {
         ga4: Boolean(
           process.env.GA4_API_SECRET && process.env.GOOGLE_SERVICE_ACCOUNT_JSON,
         ),
-        paystation: Boolean(
-          process.env.PAYSTATION_MERCHANT_ID && process.env.PAYSTATION_PASSWORD,
-        ),
+        paystation:
+          process.env.PAYSTATION_MODE === "live"
+            ? Boolean(
+                process.env.PAYSTATION_LIVE_MERCHANT_ID &&
+                  process.env.PAYSTATION_LIVE_PASSWORD,
+              )
+            : Boolean(
+                process.env.PAYSTATION_SANDBOX_MERCHANT_ID &&
+                  process.env.PAYSTATION_SANDBOX_PASSWORD,
+              ),
       }}
     />
   );

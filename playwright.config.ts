@@ -14,9 +14,12 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"] } },
   ],
-  webServer: {
-    command: "pnpm dev",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer:
+    process.env.PLAYWRIGHT_SKIP_WEBSERVER === "true"
+      ? undefined
+      : {
+          command: "pnpm dev",
+          url: "http://127.0.0.1:3000",
+          reuseExistingServer: !process.env.CI,
+        },
 });

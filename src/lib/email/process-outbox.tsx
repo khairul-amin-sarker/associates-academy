@@ -28,7 +28,7 @@ export async function processEmailOutbox(limit = 20) {
       const invoice = String(row.payload.invoice ?? "");
       const amount = Number(row.payload.amount ?? 0);
       const html = await render(PaymentReceiptEmail({ invoice, amount }));
-      const result = await resend.emails.send({ from: process.env.EMAIL_FROM_INVOICE ?? "Associates Academy <invoice@associatesacademy.com.bd>", to: row.recipient_email, subject: `Payment receipt · ${invoice}`, html }, { idempotencyKey: row.idempotency_key });
+      const result = await resend.emails.send({ from: process.env.EMAIL_FROM_INVOICE ?? "Associates Academy <invoice@associatesacademy.bd>", to: row.recipient_email, subject: `Payment receipt · ${invoice}`, html }, { idempotencyKey: row.idempotency_key });
       if (result.error) throw new Error(result.error.message);
       await admin.from("email_outbox").update({ status: "sent", sent_at: new Date().toISOString(), locked_at: null, last_error: null }).eq("id", row.id);
       await admin.from("email_delivery_logs").insert({ outbox_id: row.id, provider_message_id: result.data?.id ?? null, event_type: "sent" });

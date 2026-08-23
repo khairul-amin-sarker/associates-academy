@@ -281,7 +281,7 @@ export function AdminOverview({
             <dl className="space-y-3">
               <div className="flex justify-between gap-4">
                 <dt className="text-muted-foreground">Live site</dt>
-                <dd className="font-semibold">associatesacademy.com.bd</dd>
+                <dd className="font-semibold">associatesacademy.bd</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-muted-foreground">Latest publish</dt>

@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/courses",
     "/courses/income-tax-working-framework",
+    "/courses/practical-paper-return-e-return-filing",
     "/ebook",
     "/workshop",
     "/resources",

@@ -75,7 +75,7 @@ export function PaymentReceiptEmail({
             </Text>
           </Section>
           <Button
-            href={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://associatesacademy.com.bd"}/dashboard`}
+            href={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.associatesacademy.bd"}/dashboard`}
             style={{
               backgroundColor: "#111844",
               borderRadius: 10,

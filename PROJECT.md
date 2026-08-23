@@ -5,6 +5,7 @@ Associates Academy is an independent academy/platform—not a single-course sale
 ## Product surfaces
 
 - Academy homepage and resources
+- Interactive tax-learning tools and the interest-segmented Associates Tax Brief
 - Course, eBook and workshop catalog/landing pages
 - Supabase Auth, checkout and PayStation results
 - Student learning dashboard with live class, recordings, resources, community and certificates
@@ -22,8 +23,9 @@ Associates Academy is an independent academy/platform—not a single-course sale
 
 - Prices are read server-side from products.
 - Gateway fee responsibility is configured per product.
+- Course payment is guest-first: account creation/login follows successful provider verification, while a verified existing account takes the shortest automatic-enrollment path.
 - Browser callback data never grants access. PayStation invoice, amount, currency and status are re-verified.
-- Fulfillment is idempotent and creates exactly one enrollment/access record and one receipt outbox item.
+- Fulfillment and confirmed-email entitlement claims are idempotent and create exactly one enrollment/access record and one receipt outbox item.
 - CMS content is structured, validated, revisioned and atomically published without redeploy.
 - Student trust content must be genuine; no invented reviews/counts.
 - Tracking is default-on with a clear opt-out that stops first-party, GA4, Pixel and CAPI collection.

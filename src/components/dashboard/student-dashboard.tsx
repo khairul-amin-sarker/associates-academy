@@ -1,10 +1,180 @@
 import Link from "next/link";
-import { ArrowRight, Award, BookOpen, CalendarDays, CheckCircle2, Clock3, Download, ExternalLink, LockKeyhole, MessageCircle, PlayCircle } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  BookOpen,
+  Download,
+  MessageCircle,
+  PlayCircle,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { NextLiveClassPanel } from "@/components/dashboard/next-live-class-panel";
+import type { CourseWorkspace } from "@/lib/learning/workspace";
 
-export function StudentDashboard({ paid = false }: { paid?: boolean }) {
-  return <div className="space-y-6"><div><Badge variant="outline">LEARNING DASHBOARD</Badge><h1 className="font-heading mt-3 text-4xl font-extrabold">আপনার শেখার journey</h1><p className="mt-2 text-muted-foreground">Class, module, resource ও certificate—সবকিছু organised এবং secure।</p></div><div className="grid gap-4 lg:grid-cols-[1.5fr_0.85fr]"><Card><CardHeader className="flex-row items-start justify-between gap-4"><div><Badge className={paid ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}>{paid ? "Active enrollment" : "Preview access"}</Badge><CardTitle className="font-heading mt-4 text-2xl">Fundamentals of Income Tax Act, 2023</CardTitle></div><BookOpen className="text-brand-gold" /></CardHeader><CardContent><div className="flex items-center justify-between text-sm"><span>Course progress</span><span className="font-semibold">{paid ? "৩৩%" : "০%"}</span></div><Progress value={paid ? 33 : 0} className="mt-2" /><div className="mt-6 flex flex-wrap gap-2"><Button asChild><Link href="/dashboard/courses/income-tax-working-framework">Course খুলুন<ArrowRight /></Link></Button>{!paid ? <Button variant="outline" asChild><Link href="/checkout?product=income-tax-working-framework"><LockKeyhole />Enrollment activate করুন</Link></Button> : null}</div></CardContent></Card><Card><CardHeader><CardTitle className="font-heading flex items-center gap-2"><CalendarDays className="h-5 w-5 text-brand-gold" />পরবর্তী live class</CardTitle></CardHeader><CardContent><p className="font-heading text-2xl font-bold">Class schedule pending</p><p className="mt-2 text-sm text-muted-foreground">Admin schedule publish করলে Meet ও Calendar action এখানে আসবে।</p><Button className="mt-5 w-full" variant="outline" disabled><Clock3 />Schedule আসছে</Button></CardContent></Card></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{[[PlayCircle, "Modules", paid ? "২টি available" : "Preview locked"], [Download, "Resources", paid ? "PDF & files" : "Enrollment needed"], [MessageCircle, "Community", paid ? "Join link" : "Locked"], [Award, "Certificate", "Completion-এর পর"]].map(([Icon, title, text]) => { const IconComponent = Icon as typeof Award; return <Card key={String(title)} className="py-0"><CardContent className="p-5"><IconComponent className="h-5 w-5 text-brand-gold" /><p className="font-heading mt-4 text-xl font-bold">{String(title)}</p><p className="mt-1 text-sm text-muted-foreground">{String(text)}</p></CardContent></Card>; })}</div><Card><CardHeader><CardTitle className="font-heading">সাম্প্রতিক activity</CardTitle></CardHeader><CardContent className="space-y-3"><div className="flex items-center gap-3 rounded-xl bg-muted/55 p-4"><CheckCircle2 className="h-5 w-5 text-success" /><div><p className="font-semibold">Dashboard ready</p><p className="text-xs text-muted-foreground">Your secure learning workspace is active</p></div></div><div className="flex items-center gap-3 rounded-xl border border-dashed p-4 text-muted-foreground"><ExternalLink className="h-5 w-5" /><span className="text-sm">Course activity এখানে দেখা যাবে</span></div></CardContent></Card></div>;
+const dashboardShortcuts = [
+  [PlayCircle, "Modules", "Module তালিকা ও progress"],
+  [Download, "Resources", "Private files"],
+  [MessageCircle, "Community", "Batch setting থেকে"],
+  [Award, "Certificate", "Completion-এর পর"],
+] as const;
+
+export function StudentDashboard({
+  workspaces,
+}: {
+  workspaces: CourseWorkspace[];
+}) {
+  const primary = workspaces[0];
+  return (
+    <div className="space-y-5 sm:space-y-6">
+      <section className="dotted-grid border-brand-navy/20 bg-brand-navy overflow-hidden rounded-[2rem] border px-6 py-9 text-white shadow-[0_22px_44px_-30px_rgb(17_24_68_/_80%)] sm:px-10 sm:py-12">
+        <Badge className="border-brand-gold/70 text-brand-gold bg-transparent">
+          LEARNING DASHBOARD
+        </Badge>
+        <h1 className="font-heading mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+          আপনার শেখার journey
+        </h1>
+        <p className="mt-3 max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
+          Class, module, resource ও certificate—সবকিছু{" "}
+          <span className="text-brand-gold">organised</span> এবং{" "}
+          <span className="text-brand-gold">secure</span>।
+        </p>
+      </section>
+
+      {primary ? (
+        <>
+          <NextLiveClassPanel
+            session={primary.nextSession}
+            module={
+              primary.modules.find(
+                (module) => module.id === primary.nextSession?.moduleId,
+              ) ?? null
+            }
+            entitled={primary.enrolled}
+          />
+
+          <section className="border-brand-navy/10 rounded-[2rem] border bg-white p-4 shadow-[0_18px_38px_-30px_rgb(17_24_68_/_45%)] sm:p-6">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <p className="text-brand-indigo text-sm font-bold tracking-[0.16em] uppercase">
+                My enrolled courses
+              </p>
+              <Link
+                href="/courses"
+                className="text-brand-navy inline-flex items-center gap-1 text-sm font-bold hover:underline"
+              >
+                View all courses <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {workspaces.map((workspace, index) => (
+                <article
+                  key={workspace.slug}
+                  className={
+                    index === 0
+                      ? "bg-brand-navy rounded-[1.5rem] p-6 text-white shadow-[0_16px_30px_-24px_rgb(17_24_68_/_90%)]"
+                      : "border-brand-navy/10 bg-card rounded-[1.5rem] border p-6"
+                  }
+                >
+                  <Badge
+                    className={
+                      workspace.enrolled
+                        ? "bg-green-100 text-green-800"
+                        : "bg-amber-100 text-amber-800"
+                    }
+                  >
+                    {workspace.demo
+                      ? "Local preview"
+                      : workspace.enrolled
+                        ? "Active"
+                        : "Preview"}
+                  </Badge>
+                  <h2 className="font-heading mt-5 text-2xl leading-tight font-extrabold">
+                    {workspace.title}
+                  </h2>
+                  <p
+                    className={
+                      index === 0
+                        ? "mt-3 flex items-center gap-2 text-sm text-white/75"
+                        : "text-muted-foreground mt-3 flex items-center gap-2 text-sm"
+                    }
+                  >
+                    <BookOpen className="text-brand-gold h-5 w-5 shrink-0" />
+                    {workspace.moduleCount.toLocaleString("bn-BD")}টি learning
+                    module
+                  </p>
+                  <div className="mt-8 flex items-center justify-between text-sm font-semibold">
+                    <span>Course progress</span>
+                    <span>{workspace.progress.toLocaleString("bn-BD")}%</span>
+                  </div>
+                  <Progress
+                    value={workspace.progress}
+                    className={
+                      index === 0
+                        ? "[&>div]:bg-brand-gold mt-2 bg-white/20"
+                        : "mt-2"
+                    }
+                  />
+                  <Button
+                    className={
+                      index === 0
+                        ? "text-brand-navy mt-6 bg-white hover:bg-white/90"
+                        : "mt-6"
+                    }
+                    asChild
+                  >
+                    <Link href={`/dashboard/courses/${workspace.slug}`}>
+                      Course খুলুন <ArrowRight />
+                    </Link>
+                  </Button>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {dashboardShortcuts.map(([Icon, title, text]) => (
+              <Card
+                key={title}
+                className="group py-0 shadow-[0_12px_26px_-24px_rgb(17_24_68_/_55%)]"
+              >
+                <CardContent className="flex min-h-28 items-center gap-4 p-5">
+                  <Icon
+                    className="text-brand-gold h-9 w-9 shrink-0"
+                    strokeWidth={1.75}
+                  />
+                  <div className="min-w-0">
+                    <p className="font-heading text-lg font-bold">{title}</p>
+                    <p className="text-muted-foreground mt-1 text-sm">
+                      {title === "Resources" && !primary.enrolled
+                        ? "Enrollment needed"
+                        : text}
+                    </p>
+                  </div>
+                  <ArrowRight className="text-brand-navy ml-auto h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+                </CardContent>
+              </Card>
+            ))}
+          </section>
+        </>
+      ) : (
+        <Card>
+          <CardContent className="p-8 text-center">
+            <p className="font-heading text-2xl font-bold">
+              এখনও active course নেই
+            </p>
+            <p className="text-muted-foreground mt-2">
+              আপনার enrollment active হলে learning workspace এখানে দেখা যাবে।
+            </p>
+            <Button className="mt-5" asChild>
+              <Link href="/courses">
+                কোর্স দেখুন <ArrowRight />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
 }

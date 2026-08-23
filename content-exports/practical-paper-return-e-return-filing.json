@@ -1,0 +1,995 @@
+{
+  "exportVersion": "1.0",
+  "exportedAt": "2026-08-22T16:58:14.556Z",
+  "purpose": "AI handoff for rewriting the Practical Paper Return & E-Return Filing Course landing page",
+  "source": {
+    "courseContentFile": "src/lib/content/practical-return-course.ts",
+    "landingPageFile": "src/components/marketing/practical-return-course-page.tsx",
+    "routeFile": "src/app/(marketing)/courses/[slug]/page.tsx",
+    "route": "/courses/practical-paper-return-e-return-filing",
+    "checkoutRoute": "/checkout/practical-paper-return-e-return-filing"
+  },
+  "metadata": {
+    "title": "Practical Paper Return & E-Return Filing Course | Associates Academy",
+    "description": "Finance Act 2026 ও Assessment Year 2026–2027 ভিত্তিক practical tax return filing course—document verification, income computation, Paper Return, IT10B, IT10BB, TDS adjustment এবং NBR E-Return submission শিখুন।",
+    "locale": "bn_BD",
+    "heroImage": "/course/return-dossier-hero.png"
+  },
+  "commerce": {
+    "note": "Current price and compare-at price are fetched at runtime from the published products table in Supabase.",
+    "fields": [
+      "price",
+      "regularPrice"
+    ],
+    "sourceTable": "products",
+    "productSlug": "practical-paper-return-e-return-filing",
+    "fallbackWhenUnavailable": null,
+    "expectedPublishedValuesFromE2E": {
+      "price": 1600,
+      "regularPrice": 2000,
+      "currency": "BDT",
+      "provenance": "tests/e2e/public-journey.spec.ts"
+    }
+  },
+  "course": {
+    "slug": "practical-paper-return-e-return-filing",
+    "productSlug": "practical-paper-return-e-return-filing",
+    "name": "Practical Paper Return & E-Return Filing Course",
+    "assessmentYear": "2026–2027",
+    "financeAct": "Finance Act 2026",
+    "hero": {
+      "label": "Finance Act 2026 • Assessment Year 2026–2027",
+      "title": "Paper Return থেকে NBR E-Return—একটি Client Case শুরু থেকে শেষ পর্যন্ত হাতে-কলমে শিখুন",
+      "description": "শুধু NBR e-Return Portal-এ কোথায় click করতে হয়, সেটা শিখলেই Return Preparation শেখা হয় না।\n\nএই কোর্সে Client-এর documents দেখে Income identify করা থেকে শুরু করে Tax হিসাব, TDS/Advance Tax adjustment, Tax Rebate, IT10B, IT10BB, Paper Return এবং Final NBR e-Return Submission—পুরো কাজটি একটি বাস্তবসম্মত Client Case ধরে শেখানো হবে।",
+      "stats": [
+        {
+          "value": "৫টি",
+          "label": "Practical Module"
+        },
+        {
+          "value": "Paper + E-Return",
+          "label": "দুইভাবেই Preparation"
+        },
+        {
+          "value": "২০২৬–২০২৭",
+          "label": "Assessment Year"
+        },
+        {
+          "value": "Start to Finish",
+          "label": "একটি Client Case"
+        }
+      ],
+      "workflowCards": [
+        {
+          "title": "Documents যাচাই",
+          "icon": "SearchCheck"
+        },
+        {
+          "title": "Income Head নির্ধারণ",
+          "icon": "Files"
+        },
+        {
+          "title": "Tax Computation",
+          "icon": "Calculator"
+        },
+        {
+          "title": "Tax & Rebate",
+          "icon": "BadgePercent"
+        },
+        {
+          "title": "IT10B + IT10BB",
+          "icon": "WalletCards"
+        },
+        {
+          "title": "NBR e-Return Submit",
+          "icon": "FileCheck2"
+        }
+      ]
+    },
+    "problems": [
+      {
+        "title": "কোন Document কেন লাগবে?",
+        "text": "Client অনেক কাগজ দিতে পারেন। কিন্তু কোন Income-এর জন্য কোন Document বা Evidence দরকার—এটা না জানলে গুরুত্বপূর্ণ তথ্য বাদ যেতে পারে।",
+        "icon": "Files"
+      },
+      {
+        "title": "Income কোন Head-এ যাবে?",
+        "text": "Employment, Rent, Agriculture, Business, Capital Gain, Financial Assets নাকি Other Sources—ভুল Head মানেই ভুল Computation।",
+        "icon": "ChartNoAxesCombined"
+      },
+      {
+        "title": "সব Income-এর Tax Treatment এক নয়",
+        "text": "কোনো Income Taxable, কোনোটি Exempt, কোনো ক্ষেত্রে Special বা Reduced Rate প্রযোজ্য হতে পারে। আগে Income-এর nature বুঝতে হবে।",
+        "icon": "BadgePercent"
+      },
+      {
+        "title": "TDS আছে—কিন্তু হিসাবের সঙ্গে মিলছে তো?",
+        "text": "TDS Certificate, Advance Tax, Tax Liability এবং Actual Payment—সবকিছু মিলিয়ে দেখতে হয়।",
+        "icon": "ReceiptText"
+      },
+      {
+        "title": "Income, Expense ও Assets কি একে অন্যের সঙ্গে মিলছে?",
+        "text": "IT10B ও IT10BB শুধু Form পূরণ নয়। Income, Family Expenditure, Assets, Liabilities এবং Fund Source-এর মধ্যে যুক্তিসংগত মিল থাকতে হয়।",
+        "icon": "Scale"
+      },
+      {
+        "title": "হিসাব জানলেই Portal Entry জানা হয় না",
+        "text": "Working Paper-এর Figure কোন জায়গায় Paper Return বা NBR e-Return-এ যাবে—এটাও আলাদা Practical Skill।",
+        "icon": "FileCheck2"
+      }
+    ],
+    "differentiatorFlow": [
+      "Documents",
+      "Income Verification",
+      "Tax Computation",
+      "Assets & Expense Reconciliation",
+      "Paper Return",
+      "NBR E-Return"
+    ],
+    "audience": [
+      {
+        "title": "নতুন Tax Practitioner",
+        "text": "যারা practical client return preparation-এ confidence তৈরি করতে চান।",
+        "icon": "BriefcaseBusiness"
+      },
+      {
+        "title": "Income Tax Practice-এ আগ্রহী Professionals",
+        "text": "আইন জানেন, কিন্তু বাস্তব return preparation workflow শিখতে চান।",
+        "icon": "Scale"
+      },
+      {
+        "title": "Accounts & Finance Professionals",
+        "text": "নিজ প্রতিষ্ঠান বা client-এর income, TDS ও return information better handle করতে চান।",
+        "icon": "Calculator"
+      },
+      {
+        "title": "Existing Return Preparers",
+        "text": "Paper Return থেকে structured E-Return filing skill upgrade করতে চান।",
+        "icon": "FileText"
+      },
+      {
+        "title": "Tax / Accounting / Law Learners",
+        "text": "Theory-এর পাশাপাশি বাস্তব application দেখতে চান।",
+        "icon": "Landmark"
+      },
+      {
+        "title": "Client Return Handle করেন এমন Professionals",
+        "text": "Documents থেকে final filing পর্যন্ত systematic workflow প্রয়োজন।",
+        "icon": "ShieldCheck"
+      }
+    ],
+    "skills": [
+      {
+        "title": "Return Filing Rules",
+        "text": "কার Return দিতে হবে, কখন দিতে হবে এবং Filing-এর আগে কী Check করতে হবে।",
+        "icon": "ShieldCheck"
+      },
+      {
+        "title": "Document Verification",
+        "text": "কোন Income-এর জন্য কোন Supporting Document প্রয়োজন তা বুঝতে পারবেন।",
+        "icon": "SearchCheck"
+      },
+      {
+        "title": "7 Heads of Income",
+        "text": "Income সঠিক Head-এ Identify ও Classify করতে পারবেন।",
+        "icon": "ChartNoAxesCombined"
+      },
+      {
+        "title": "Income Computation",
+        "text": "Head-wise Taxable Income হিসাব করতে পারবেন।",
+        "icon": "Calculator"
+      },
+      {
+        "title": "Paper Return Preparation",
+        "text": "Working Figure থেকে Return Form Prepare করতে পারবেন।",
+        "icon": "FileText"
+      },
+      {
+        "title": "NBR e-Return Filing",
+        "text": "Prepared Figure সঠিক জায়গায় Enter, Review ও Submit করতে পারবেন।",
+        "icon": "FileCheck2"
+      },
+      {
+        "title": "Tax Rebate",
+        "text": "Eligibility, Investment ও Rebate Calculation বুঝতে পারবেন।",
+        "icon": "BadgePercent"
+      },
+      {
+        "title": "TDS / Advance Tax",
+        "text": "Tax Credit Verify, Adjust ও Reconcile করতে পারবেন।",
+        "icon": "ReceiptText"
+      },
+      {
+        "title": "IT10B + IT10BB",
+        "text": "Assets, Liabilities ও Family Expenditure-এর Statement Prepare করতে পারবেন।",
+        "icon": "WalletCards"
+      },
+      {
+        "title": "Final Review & Submission",
+        "text": "Submit করার আগে পুরো Return Check করার একটি Clear Process তৈরি হবে।",
+        "icon": "CircleCheckBig"
+      }
+    ],
+    "modules": [
+      {
+        "number": "01",
+        "title": "Return Filing Rules & Preparation Checklist",
+        "subtitle": "Return শুরু করার আগে কী জানা ও কী Check করা জরুরি",
+        "groups": [
+          {
+            "title": "Compliance framework",
+            "topics": [
+              "Return filing obligation — Sec. 166",
+              "Assets & Liabilities Statement — Sec. 167",
+              "Lifestyle / Family Expenditure Statement — Sec. 168",
+              "General return filing rules — Sec. 169",
+              "Return filing timeline — Sec. 170",
+              "Return filing method — Sec. 170A",
+              "Tax payment with return — Sec. 171",
+              "Special circumstances — Sec. 172",
+              "Tax & surcharge before filing — Sec. 173",
+              "Late Return — Sec. 174",
+              "Revised Return — Sec. 175",
+              "Tax Rebate fundamentals — Sec. 78",
+              "Sec. 147 & 343 practical relevance",
+              "Return preparation document checklist",
+              "Paper Return vs E-Return",
+              "Common filing mistakes & compliance risk"
+            ]
+          }
+        ],
+        "highlightLabel": "Practical Outcome",
+        "highlight": "Module শেষে Client-এর Return শুরু করার আগে কী কী Check করতে হবে—তার একটি Clear Checklist আপনার থাকবে।"
+      },
+      {
+        "number": "02",
+        "title": "Documents দেখে Income Identify ও Verify করা",
+        "subtitle": "Client কী বলছেন—তার পাশাপাশি Documents কী বলছে, সেটাও বুঝতে শিখুন।",
+        "groups": [
+          {
+            "title": "Employment — Sec. 32–34",
+            "topics": [
+              "Salary",
+              "Allowance",
+              "Bonus",
+              "Employment benefits",
+              "Taxable / non-taxable component",
+              "Employer certificate",
+              "TDS certificate"
+            ]
+          },
+          {
+            "title": "Rent & Property — Sec. 35–39",
+            "topics": [
+              "House Property",
+              "Other Property",
+              "Rent evidence",
+              "Agreement",
+              "Bank statement",
+              "Relevant property documents"
+            ]
+          },
+          {
+            "title": "Agricultural Income — Sec. 40–44",
+            "topics": [
+              "Farming income",
+              "Other agricultural income",
+              "Relevant expenditure",
+              "Supporting evidence"
+            ]
+          },
+          {
+            "title": "Business & Profession — Sec. 45–56",
+            "topics": [
+              "Business / professional income",
+              "TDS-related income",
+              "Special income",
+              "Reduced-rate income",
+              "Final-tax income",
+              "Books, invoices & bank statement verification"
+            ]
+          },
+          {
+            "title": "Capital Gain — Sec. 57+",
+            "topics": [
+              "Property",
+              "House / Apartment",
+              "Listed shares",
+              "Business undertaking",
+              "Other capital gain",
+              "Supporting transfer documents"
+            ]
+          },
+          {
+            "title": "Financial Assets — Sec. 62–65",
+            "topics": [
+              "Sanchaypatra",
+              "Bank / FI interest or profit",
+              "Bills",
+              "Dividend",
+              "Securities",
+              "TDS evidence"
+            ]
+          },
+          {
+            "title": "Other Sources — Sec. 66",
+            "topics": [
+              "License fee",
+              "Royalty",
+              "Cash subsidy",
+              "Meeting fee",
+              "Honorarium",
+              "Joint Venture profit",
+              "Other income"
+            ]
+          }
+        ],
+        "scheduleHighlights": [
+          {
+            "title": "First Schedule",
+            "text": "Voluntary Disclosure"
+          },
+          {
+            "title": "Sixth Schedule",
+            "text": "Exemption · Deduction · Rebate"
+          },
+          {
+            "title": "Seventh Schedule",
+            "text": "Special Tax Rate"
+          }
+        ],
+        "highlightLabel": "Practical Outcome",
+        "highlight": "Client-এর Documents দেখে Income কোথা থেকে এসেছে, কোন Head-এ যাবে এবং কী Evidence প্রয়োজন—তা নির্ধারণ করতে পারবেন।"
+      },
+      {
+        "number": "03",
+        "title": "Employment, Rent & Agriculture — Paper Return + E-Return Practical",
+        "subtitle": "এখান থেকেই একটি Client Case নিয়ে Live Return Preparation শুরু।",
+        "groups": [
+          {
+            "title": "Part A — NBR E-Return Portal",
+            "topics": [
+              "Portal access",
+              "Registration / Login",
+              "Taxpayer profile",
+              "Basic information",
+              "Assessment Year / Tax Year",
+              "Return preparation interface",
+              "Information কোথায় enter করতে হয়"
+            ]
+          },
+          {
+            "title": "Part B — Employment Income",
+            "topics": [
+              "Government ও Non-Government employee",
+              "Salary components, allowance ও bonus",
+              "Benefits",
+              "Exemptions / allowable components",
+              "TDS",
+              "Taxable employment income"
+            ]
+          },
+          {
+            "title": "Part C — Rent Income",
+            "topics": [
+              "House Property",
+              "Other Property",
+              "Gross Rent",
+              "Allowable adjustment / deduction",
+              "Net taxable rent income"
+            ]
+          },
+          {
+            "title": "Part D — Agricultural Income",
+            "topics": [
+              "Farming",
+              "Other agricultural income",
+              "Special agricultural income",
+              "Expenditure",
+              "Taxable agricultural income"
+            ]
+          }
+        ],
+        "highlightLabel": "Practical Session",
+        "highlight": "Documents → Income Calculation → Paper Return → NBR e-Return Entry"
+      },
+      {
+        "number": "04",
+        "title": "Business, Capital Gain & Financial Assets",
+        "subtitle": "যেসব Income Head-এ Calculation ও Tax Treatment তুলনামূলক বেশি গুরুত্বপূর্ণ।",
+        "groups": [
+          {
+            "title": "Part E — Business & Profession",
+            "topics": [
+              "Business / Professional Income",
+              "Business with TDS",
+              "Special business income",
+              "Reduced tax rate",
+              "Final tax treatment",
+              "Business income reconciliation",
+              "TDS adjustment",
+              "Accounting information বনাম taxable figure cross-check"
+            ],
+            "miniFlow": [
+              "Client Information",
+              "Supporting Information",
+              "TDS",
+              "Return Figure"
+            ]
+          },
+          {
+            "title": "Part F — Capital Gain",
+            "topics": [
+              "Property transfer",
+              "House / Apartment transfer",
+              "Listed company share transfer",
+              "Business undertaking transfer",
+              "Other capital gain",
+              "Reduced-rate capital gain",
+              "Acquisition / sale information",
+              "Gain calculation",
+              "Relevant supporting documents"
+            ],
+            "miniFlow": [
+              "Acquisition",
+              "Transfer",
+              "Gain Calculation",
+              "Tax Treatment",
+              "Return Entry"
+            ]
+          },
+          {
+            "title": "Part G — Financial Assets",
+            "topics": [
+              "Sanchaypatra",
+              "Bank / FI interest",
+              "Interest on bills",
+              "Dividend",
+              "Securities / financial assets",
+              "Reduced-rate income",
+              "TDS adjustment"
+            ]
+          }
+        ],
+        "highlightLabel": "Practical Outcome",
+        "highlight": "একটি Complex Income-এর Document, Calculation, Tax Treatment এবং Return Entry—চারটি অংশ একসঙ্গে মিলিয়ে কাজ করতে পারবেন।"
+      },
+      {
+        "number": "05",
+        "title": "Rebate, IT10B, IT10BB, Tax Payment & Final Submission",
+        "subtitle": "একটি Return Complete করার শেষ এবং সবচেয়ে গুরুত্বপূর্ণ ধাপ।",
+        "groups": [
+          {
+            "title": "H — Other Sources",
+            "topics": [
+              "License Fee",
+              "Royalty",
+              "Cash Subsidy",
+              "Meeting Fee",
+              "Honorarium with TDS",
+              "Joint Venture Profit",
+              "Other Income",
+              "Tax-exempt / reduced-rate income"
+            ]
+          },
+          {
+            "title": "I — Special / Additional Income",
+            "topics": [
+              "First Schedule Voluntary Disclosure",
+              "Partner Income",
+              "AOP Income",
+              "Income Earned Outside Bangladesh",
+              "Spouse / Minor Child Income"
+            ]
+          },
+          {
+            "title": "J — Tax Rebate",
+            "topics": [
+              "Eligibility",
+              "Eligible investment / expenditure",
+              "Supporting documents",
+              "Rebate calculation",
+              "Return entry"
+            ]
+          },
+          {
+            "title": "K — IT10BB",
+            "topics": [
+              "Family expenditure",
+              "Personal / living expenses",
+              "Income vs expenditure reconciliation",
+              "Common mistakes"
+            ]
+          },
+          {
+            "title": "L — IT10B",
+            "topics": [
+              "Cash",
+              "Bank balance",
+              "Sanchaypatra",
+              "Shares",
+              "Vehicle",
+              "Land",
+              "House / Apartment",
+              "Other assets",
+              "Loans / Liabilities",
+              "Opening vs Closing position",
+              "Asset reconciliation"
+            ]
+          },
+          {
+            "title": "M — Tax & Payment",
+            "topics": [
+              "Tax payable",
+              "Advance Tax",
+              "TDS",
+              "Carry Forward",
+              "Refund adjustment",
+              "Online A-Challan",
+              "Recognized payment",
+              "Payment reconciliation"
+            ]
+          },
+          {
+            "title": "N — Final Submission",
+            "topics": [
+              "Complete return review",
+              "Error checking",
+              "Final submission",
+              "Acknowledgement",
+              "Tax Certificate",
+              "Submitted Return copy",
+              "Client record preservation"
+            ]
+          }
+        ],
+        "highlightLabel": "Final Review Mindset",
+        "highlight": "একটি Client-এর Complete Return File Final Review করে Submit করার পুরো Process Practice করা হবে।"
+      }
+    ],
+    "workflow": [
+      "Client Information",
+      "Document Collection",
+      "Income Identification",
+      "Income Head Classification",
+      "Income Computation",
+      "Exemption / Rebate",
+      "Tax Calculation",
+      "TDS / Advance Tax Adjustment",
+      "IT10B",
+      "IT10BB",
+      "Tax Payment / A-Challan",
+      "Paper Return",
+      "NBR E-Return",
+      "Final Review & Submission"
+    ],
+    "outcomes": [
+      {
+        "title": "Client-এর Return শুরু থেকে Submit পর্যন্ত প্রস্তুত করতে পারবেন",
+        "text": "Documents থেকে Final Submission পর্যন্ত কাজটি ধাপে ধাপে Follow করতে পারবেন।",
+        "icon": "FileCheck2"
+      },
+      {
+        "title": "Income সঠিক Head-এ classify করতে পারবেন",
+        "text": "Income সঠিক Head-এ Identify ও Classify করতে পারবেন।",
+        "icon": "ChartNoAxesCombined"
+      },
+      {
+        "title": "Supporting Documents verify করতে পারবেন",
+        "text": "কোন Income-এর জন্য কোন Supporting Document প্রয়োজন তা বুঝতে পারবেন।",
+        "icon": "SearchCheck"
+      },
+      {
+        "title": "Paper Return ও E-Return দুটোই prepare করতে পারবেন",
+        "text": "Working Figure থেকে Return Form এবং NBR e-Return Entry পর্যন্ত।",
+        "icon": "Files"
+      },
+      {
+        "title": "IT10B ও IT10BB reconcile করতে পারবেন",
+        "text": "Income, Expenditure, Assets ও Liabilities-এর মধ্যে Consistency Check করতে পারবেন।",
+        "icon": "Scale"
+      },
+      {
+        "title": "Final Return review ও submit করতে পারবেন",
+        "text": "Tax Payment, Error Check, Submission, Acknowledgement ও Tax Certificate-এর রেকর্ড রাখতে পারবেন।",
+        "icon": "CircleCheckBig"
+      }
+    ],
+    "offer": {},
+    "faqs": [
+      {
+        "question": "এই কোর্সটি কি শুধু E-Return শেখাবে?",
+        "answer": "না। Portal Filing পুরো Process-এর শেষ অংশ। তার আগে Client Documents, Income Identification, Tax Computation, TDS/Advance Tax, Tax Rebate, IT10B, IT10BB এবং Paper Return Preparation শেখানো হবে।"
+      },
+      {
+        "question": "Paper Return-ও কি শেখানো হবে?",
+        "answer": "হ্যাঁ। Working Calculation থেকে Paper Return Prepare করা এবং একই তথ্য NBR e-Return-এ কীভাবে ব্যবহার করবেন—দুটোই দেখানো হবে।"
+      },
+      {
+        "question": "কোন Assessment Year-এর return নিয়ে কাজ হবে?",
+        "answer": "Course Material Assessment Year 2026–2027 এবং Finance Act 2026 ভিত্তিক।"
+      },
+      {
+        "question": "Income-এর সব প্রধান Head কি থাকবে?",
+        "answer": "হ্যাঁ। Employment, Rent, Agriculture, Business & Profession, Capital Gain, Financial Assets এবং Other Sources—সব প্রধান Income Head Course Scope-এর মধ্যে রয়েছে।"
+      },
+      {
+        "question": "Business Income-এর Practical Calculation থাকবে?",
+        "answer": "হ্যাঁ। Business/Professional Income, TDS, Accounting Figure বনাম Taxable Figure Reconciliation এবং Relevant Tax Treatment দেখানো হবে।"
+      },
+      {
+        "question": "IT10B ও IT10BB শেখানো হবে?",
+        "answer": "হ্যাঁ। Assets & Liabilities এবং Family Expenditure Statement Prepare ও Reconcile করার Practical Approach শেখানো হবে।"
+      },
+      {
+        "question": "Tax Rebate ও TDS Adjustment থাকবে?",
+        "answer": "হ্যাঁ। Eligibility ও Supporting Documents থেকে শুরু করে Rebate Calculation এবং TDS/Advance Tax Adjustment পর্যন্ত দেখানো হবে।"
+      },
+      {
+        "question": "Course শেষে কী ধরনের কাজ করতে পারব?",
+        "answer": "লক্ষ্য হলো—একটি Client-এর Documents হাতে পাওয়ার পর Income Identify ও Calculate করে, Tax ও Statements মিলিয়ে Paper Return এবং NBR e-Return Final Submission পর্যন্ত পুরো Process নিজে Follow করতে পারা।"
+      }
+    ]
+  },
+  "landingPage": {
+    "sections": [
+      {
+        "id": "hero",
+        "title": "“Paper Return” থেকে “NBR e-Return”—একটি Client Case শুরু থেকে শেষ পর্যন্ত হাতে-কলমে শিখুন",
+        "cta": [
+          "কোর্সে ভর্তি হোন",
+          "সম্পূর্ণ curriculum"
+        ]
+      },
+      {
+        "id": "problem",
+        "title": "রিটার্ন ফাইলিংয়ে আসল কঠিন জায়গা Portal নয়",
+        "description": "একটি সঠিক Return তৈরি করতে আইন, documents, calculation, evidence এবং financial consistency—সবকিছু একসঙ্গে কাজ করে।",
+        "closingLine": "Calculation ঠিক হলেও reconciliation ভুল হলে Return technically complete নয়।"
+      },
+      {
+        "id": "system-flow",
+        "title": "একটি Return আসলে কীভাবে তৈরি হয়?",
+        "description": "একটি continuous professional system—যেখানে প্রতিটি সিদ্ধান্ত পরের figure, statement এবং submission-কে প্রভাবিত করে।"
+      },
+      {
+        "id": "portal",
+        "title": "E-Return Portal শেখা মানেই Return Preparation শেখা নয়",
+        "description": "Portal শুধু final data-entry layer। তার আগে client-এর documents থেকে legally correct এবং financially consistent return তৈরি করতে হয়।"
+      },
+      {
+        "id": "audience",
+        "title": "কার জন্য এই practical return system?",
+        "description": "আপনার starting point আলাদা হতে পারে—কিন্তু লক্ষ্য একই: client information-কে একটি defensible return file-এ রূপান্তর করা।"
+      },
+      {
+        "id": "capability",
+        "title": "একটি Complete Return File করতে আপনি যে Capability তৈরি করবেন",
+        "description": "Preparation এবং filing—একটি complete professional file-এর দুইটি connected discipline।"
+      },
+      {
+        "id": "instructor",
+        "title": "Your Instructor",
+        "instructor": {
+          "name": "Mohammad Khairul Amin Sarker",
+          "credentials": "LLB · MBA · CA-CC",
+          "role": "Income Tax Lawyer · Trainer · CEO, Associates Academy",
+          "experience": "13 years plus income tax practice",
+          "positioning": "Return preparation শেখার সবচেয়ে কার্যকর পথ হলো একটি বাস্তব client case শুরু থেকে শেষ পর্যন্ত করা।",
+          "tags": [
+            "Income Tax Practice",
+            "Client Case Workflow",
+            "Professional Review"
+          ],
+          "image": "/brand/founder.png"
+        }
+      },
+      {
+        "id": "curriculum",
+        "title": "৫টি Module—একটি Complete Client Return Experience",
+        "description": "Legal foundation থেকে final submission পর্যন্ত প্রতিটি module একই client-file logic-এর পরের স্তর তৈরি করে।"
+      },
+      {
+        "id": "financial-consistency",
+        "eyebrow": "Financial consistency test",
+        "title": "Income → Tax → Expenditure → Assets",
+        "availableSources": [
+          "Declared Income",
+          "Explained Sources"
+        ],
+        "financialApplication": [
+          "Tax",
+          "Family Expenditure",
+          "Asset Growth"
+        ],
+        "description": "Return preparation শুধু income calculation নয়। Financial position-এর consistency establish করাও গুরুত্বপূর্ণ.",
+        "badge": "Reconciled position"
+      },
+      {
+        "id": "return-file-anatomy",
+        "title": "একটি Complete Return File-এর ভেতরে কী কী থাকে?",
+        "description": "একটি central client record-এর পরস্পর-সংযুক্ত evidence, calculation এবং declaration layer.",
+        "dossierItems": [
+          "Evidence Index",
+          "Working Computation",
+          "Statements",
+          "Submission Record"
+        ],
+        "reviewedStamp": "REVIEWED / AY 26–27"
+      },
+      {
+        "id": "client-journey",
+        "title": "একটি Client-এর File Course-এ কীভাবে এগোবে",
+        "description": "একটি case-এর evidence trail ধরে preparation, reconciliation এবং submission-এর পুরো story।"
+      },
+      {
+        "id": "review",
+        "title": "Submit করার আগে একজন Professional কী Check করেন?",
+        "description": "Portal-এর submit button-এর আগে একটি disciplined final review—যেখানে evidence, calculation এবং statements আবার একসঙ্গে দেখা হয়।"
+      },
+      {
+        "id": "transformation",
+        "title": "Course-এর আগে → Course-এর পরে",
+        "description": "Transformation-এর লক্ষ্য কোনো exaggerated promise নয়—একটি repeatable professional process তৈরি করা।",
+        "before": [
+          "Documents আছে, sequence unclear",
+          "Income head নিয়ে confusion",
+          "Portal-dependent filing",
+          "Reconciliation uncertainty",
+          "Final review checklist নেই"
+        ],
+        "after": [
+          "Structured client workflow",
+          "Evidence-based classification",
+          "Complete tax computation",
+          "IT10B / IT10BB reconciliation",
+          "Confident Paper + E-Return submission"
+        ],
+        "goal": "একটি real client-এর complete return independently prepare এবং submit করতে পারা"
+      },
+      {
+        "id": "enrollment",
+        "heading": "Complete Return Preparation System",
+        "facts": {
+          "scope": "Paper Return + NBR E-Return",
+          "curriculum": "5টি practical module"
+        },
+        "includes": [
+          "Document Verification ও Income Classification",
+          "Head-wise Income ও Tax Computation",
+          "IT10B / IT10BB ও TDS / AIT Reconciliation",
+          "Paper Return থেকে Final E-Return Submission"
+        ],
+        "cta": "Enrollment শুরু করুন"
+      },
+      {
+        "id": "registration",
+        "title": "রেজিস্ট্রেশন কীভাবে সম্পন্ন হবে?",
+        "description": "Payment result browser থেকে নয়—server verification সফল হওয়ার পর enrollment access চালু হয়।"
+      },
+      {
+        "id": "faq",
+        "title": "সাধারণ জিজ্ঞাসা",
+        "description": "Course scope, Paper Return, E-Return, income heads এবং final workflow সম্পর্কে source-backed উত্তর।"
+      },
+      {
+        "id": "final-cta",
+        "heading": "একটি Client-এর Documents হাতে নিয়ে Complete Return File করতে প্রস্তুত?",
+        "description": "Document verification থেকে final E-Return submission পর্যন্ত practical workflow শিখুন।",
+        "cta": "Enrollment শুরু করুন"
+      }
+    ],
+    "pageData": {
+      "returnSystem": [
+        "Client Documents",
+        "Income Identify",
+        "Classify",
+        "Compute",
+        "Tax / Rebate",
+        "Wealth Reconcile",
+        "Paper Return",
+        "E-Return"
+      ],
+      "portalLayers": [
+        "Documents",
+        "Working Paper",
+        "Tax Computation",
+        "IT10B / IT10BB",
+        "E-Return Portal"
+      ],
+      "portalLayerNotes": [
+        "Source evidence",
+        "Verified figures",
+        "Tax position",
+        "Disclosure statements",
+        "Final data-entry layer"
+      ],
+      "audienceGroups": [
+        {
+          "title": "Tax Practice শুরু করতে চান",
+          "description": "Theory থেকে একটি বাস্তব client file-এর structured preparation workflow-এ যেতে চান।",
+          "roles": [
+            "নতুন Tax Practitioner",
+            "Tax / Accounting / Law Learner"
+          ]
+        },
+        {
+          "title": "Already Accounts / Finance-এ কাজ করেন",
+          "description": "Income, TDS এবং return information আরও নির্ভুলভাবে verify ও handle করতে চান।",
+          "roles": [
+            "Accounts Professional",
+            "Finance Professional",
+            "Compliance Staff"
+          ]
+        },
+        {
+          "title": "Client Return আরও professionally handle করতে চান",
+          "description": "Paper Return থেকে reconciled E-Return submission পর্যন্ত নিজের process upgrade করতে চান।",
+          "roles": [
+            "Existing Return Preparer",
+            "Tax Professional"
+          ]
+        }
+      ],
+      "clientJourney": [
+        [
+          "Client documents arrive",
+          "Evidence ও source information গ্রহণ"
+        ],
+        [
+          "Income sources identified",
+          "প্রতিটি income source আলাদা করা"
+        ],
+        [
+          "Taxable income calculated",
+          "Head-wise computation তৈরি"
+        ],
+        [
+          "Tax, rebate ও TDS adjusted",
+          "Liability ও credit reconcile"
+        ],
+        [
+          "Assets ও expenses reconciled",
+          "IT10B / IT10BB consistency"
+        ],
+        [
+          "Paper Return prepared",
+          "Working figure return form-এ translate"
+        ],
+        [
+          "NBR E-Return submitted",
+          "Final review, submit ও record preserve"
+        ]
+      ],
+      "reviewItems": [
+        "সব income identify হয়েছে?",
+        "সঠিক income head-এ classify হয়েছে?",
+        "Supporting documents consistent?",
+        "TDS / Advance Tax reflected?",
+        "Rebate correctly calculated?",
+        "IT10B complete?",
+        "IT10BB complete?",
+        "Tax payment matched?",
+        "Assets / expenditure reconciled?",
+        "কোনো information missing?"
+      ],
+      "registrationSteps": [
+        [
+          "Course Select",
+          "Enrollment action থেকে শুরু করুন।"
+        ],
+        [
+          "Login / Register",
+          "Account-এ login করুন অথবা নতুন account তৈরি করুন।"
+        ],
+        [
+          "Checkout",
+          "প্রয়োজনীয় details দিয়ে order request তৈরি করুন।"
+        ],
+        [
+          "PayStation Payment",
+          "Secure gateway-এ payment সম্পন্ন করুন।"
+        ],
+        [
+          "Verification + Dashboard",
+          "Server verification সফল হলে access চালু হবে।"
+        ]
+      ],
+      "anatomyLabels": [
+        "Basic Information",
+        "Income Computation",
+        "TDS / AIT",
+        "Tax Rebate",
+        "IT10B",
+        "IT10BB",
+        "Tax Payment",
+        "Paper Return",
+        "E-Return",
+        "Acknowledgement"
+      ],
+      "returnCaseVisual": {
+        "sections": [
+          "Client Information",
+          "Income Heads",
+          "Tax Computation",
+          "IT10B / IT10BB",
+          "TDS / AIT",
+          "Final Submission"
+        ],
+        "labels": [
+          "PAPER RETURN",
+          "FORM · 2026",
+          "Taxpayer Case File",
+          "Assessment Dossier",
+          "Client Return File",
+          "Evidence indexed · figures reconciled",
+          "Ready for E-Return"
+        ]
+      },
+      "returnFileAnatomy": {
+        "title": "একটি Complete Return File-এর ভেতরে কী কী থাকে?",
+        "description": "একটি central client record-এর পরস্পর-সংযুক্ত evidence, calculation এবং declaration layer.",
+        "dossierItems": [
+          "Evidence Index",
+          "Working Computation",
+          "Statements",
+          "Submission Record"
+        ],
+        "reviewedStamp": "REVIEWED / AY 26–27"
+      },
+      "financialConsistency": {
+        "eyebrow": "Financial consistency test",
+        "title": "Income → Tax → Expenditure → Assets",
+        "availableSources": [
+          "Declared Income",
+          "Explained Sources"
+        ],
+        "financialApplication": [
+          "Tax",
+          "Family Expenditure",
+          "Asset Growth"
+        ],
+        "description": "Return preparation শুধু income calculation নয়। Financial position-এর consistency establish করাও গুরুত্বপূর্ণ.",
+        "badge": "Reconciled position"
+      },
+      "transformation": {
+        "title": "Course-এর আগে → Course-এর পরে",
+        "description": "Transformation-এর লক্ষ্য কোনো exaggerated promise নয়—একটি repeatable professional process তৈরি করা।",
+        "before": [
+          "Documents আছে, sequence unclear",
+          "Income head নিয়ে confusion",
+          "Portal-dependent filing",
+          "Reconciliation uncertainty",
+          "Final review checklist নেই"
+        ],
+        "after": [
+          "Structured client workflow",
+          "Evidence-based classification",
+          "Complete tax computation",
+          "IT10B / IT10BB reconciliation",
+          "Confident Paper + E-Return submission"
+        ],
+        "goal": "একটি real client-এর complete return independently prepare এবং submit করতে পারা"
+      },
+      "enrollment": {
+        "heading": "Complete Return Preparation System",
+        "facts": {
+          "scope": "Paper Return + NBR E-Return",
+          "curriculum": "5টি practical module"
+        },
+        "includes": [
+          "Document Verification ও Income Classification",
+          "Head-wise Income ও Tax Computation",
+          "IT10B / IT10BB ও TDS / AIT Reconciliation",
+          "Paper Return থেকে Final E-Return Submission"
+        ],
+        "cta": "Enrollment শুরু করুন"
+      },
+      "finalCta": {
+        "heading": "একটি Client-এর Documents হাতে নিয়ে Complete Return File করতে প্রস্তুত?",
+        "description": "Document verification থেকে final E-Return submission পর্যন্ত practical workflow শিখুন।",
+        "cta": "Enrollment শুরু করুন"
+      }
+    }
+  }
+}

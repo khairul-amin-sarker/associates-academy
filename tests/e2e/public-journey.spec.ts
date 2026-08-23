@@ -1,28 +1,92 @@
 import { expect, test } from "@playwright/test";
 
+test("homepage exposes the learning ecosystem and interactions", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: /আইন শুধু জানবেন না/ }),
+  ).toBeVisible();
+  await expect(page.locator(".associates-home > section")).toHaveCount(16);
+  await page.locator("#tax-tools").scrollIntoViewIfNeeded();
+  await page
+    .getByRole("button", { name: /Business ব্যবসা ও trade income/ })
+    .click();
+  await expect(
+    page.getByText("Financial statements, ledger ও bank statement"),
+  ).toBeVisible();
+  await page.locator("#faq").scrollIntoViewIfNeeded();
+  await page
+    .getByText("Associates Academy কি শুধুমাত্র Tax Professionals-এর জন্য?")
+    .click();
+  await expect(page.getByText(/প্রত্যেকে নিজের প্রয়োজন অনুযায়ী/)).toBeVisible();
+  await expect(page.locator("html")).toHaveJSProperty(
+    "scrollWidth",
+    await page.locator("html").evaluate((element) => element.clientWidth),
+  );
+});
+
 test("academy gateway routes to the course and checkout", async ({ page }) => {
+  const invoice = "AA-0123456789ABCDEF0123456789ABCDEF";
+  await page.route("**/api/checkout/quote", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        subtotal: 1710,
+        discountAmount: 342,
+        gatewayFee: 0,
+        totalAmount: 1368,
+        currency: "BDT",
+      }),
+    });
+  });
+  await page.route("**/api/payments/paystation/initiate", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        invoiceNumber: invoice,
+        checkoutUrl: `https://sandbox.paystation.com.bd/checkout/${invoice}`,
+      }),
+    });
+  });
+  await page.route("https://sandbox.paystation.com.bd/**", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "text/html",
+      body: "<main><h1>PayStation Sandbox Hosted Checkout</h1></main>",
+    });
+  });
+
   await page.goto("/");
   await expect(page).toHaveTitle(/Associates Academy/);
   await expect(
-    page.getByRole("heading", { name: /Professional Compliance/ }),
+    page.getByRole("heading", { name: /আইন শুধু জানবেন না/ }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "কোর্স দেখুন" }).first().click();
+  await page.getByRole("link", { name: "কোর্সসমূহ দেখুন" }).first().click();
   await expect(page).toHaveURL(/\/courses$/);
-  await expect(page.getByRole("heading", { name: /Fundamentals of Income Tax Act/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /Fundamentals of Income Tax Act/ }),
+  ).toBeVisible();
   await page.goto("/courses/income-tax-working-framework");
   await expect(
     page.getByRole("heading", { name: /Fundamentals of Income Tax Act/ }),
   ).toBeVisible();
   await expect(
-    page.locator('a[href="/checkout?product=income-tax-working-framework"]').first(),
+    page.locator('a[href="/checkout/income-tax-working-framework"]').first(),
   ).toBeVisible();
   await page.goto("/checkout?product=income-tax-working-framework");
-  await expect(page).toHaveURL(
-    /\/checkout\?product=income-tax-working-framework/,
-  );
+  await expect(page).toHaveURL(/\/checkout\/income-tax-working-framework/);
   await page.getByLabel("পূর্ণ নাম").fill("Local Test Learner");
-  await page.getByLabel("Email").fill("learner@example.com");
-  await page.getByLabel("Mobile number").fill("01700000000");
+  await page.getByLabel("ইমেইল *").fill("learner@example.com");
+  await page.getByLabel("প্রাথমিক ফোন নম্বর *").fill("01700000000");
+  await page.getByLabel("WhatsApp নম্বর *").fill("01700000000");
+  await page.getByLabel("পেশা *").fill("Tax practitioner");
+  await page.getByLabel("শহর *").fill("Dhaka");
+  await page.getByLabel(/Coupon code/).fill("DEMO20");
+  await page.getByRole("button", { name: "Apply করুন" }).click();
+  await expect(page.getByText("Coupon discount apply হয়েছে")).toBeVisible();
   await expect(page.getByText(/Terms & Conditions/)).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Terms & Conditions" }),
@@ -33,11 +97,42 @@ test("academy gateway routes to the course and checkout", async ({ page }) => {
   await expect(
     page.getByRole("link", { name: "Privacy Policy" }),
   ).toHaveAttribute("href", "/privacy-policy");
-  await page.getByRole("button", { name: /পেমেন্ট করুন \/ Pay Now/ }).click();
-  await expect(page).toHaveURL(/\/payment\/success\?invoice=AA-DEMO-/);
+  await page.getByRole("button", { name: "PayStation-এ পেমেন্ট করুন" }).click();
+  await expect(page).toHaveURL(
+    `https://sandbox.paystation.com.bd/checkout/${invoice}`,
+  );
   await expect(
-    page.getByRole("heading", { name: "Payment status received" }),
+    page.getByRole("heading", { name: "PayStation Sandbox Hosted Checkout" }),
   ).toBeVisible();
+});
+
+test("practical return course exposes the complete workflow without placeholder offer data", async ({
+  page,
+}) => {
+  await page.goto("/courses/practical-paper-return-e-return-filing");
+  await expect(
+    page.getByRole("heading", {
+      name: /Paper Return থেকে NBR E-Return/,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /৫টি মডিউল/ })).toBeVisible();
+  await expect(page.getByText("IT10B + IT10BB", { exact: true })).toBeVisible();
+  await expect(
+    page
+      .locator("main")
+      .locator('a[href="/checkout/practical-paper-return-e-return-filing"]')
+      .first(),
+  ).toBeVisible();
+  await expect(page.getByText(/৳XXXX|Coming Soon|TBD/)).toHaveCount(0);
+
+  await page.goto("/checkout/practical-paper-return-e-return-filing");
+  await expect(
+    page.getByRole("heading", {
+      name: "Practical Paper Return & E-Return Filing Course",
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("৳১,৬০০").first()).toBeVisible();
+  await expect(page.getByText("৳২,০০০").first()).toBeVisible();
 });
 
 test("footer exposes required compliance links and business information", async ({

@@ -16,7 +16,7 @@ Events contain UUID event/session IDs, path, timestamp and schema-limited proper
 
 ## Consent and retention
 
-Tracking is default-on per product decision. A persistent privacy control switches collection off, deletes the anonymous session ID/cookie and stops first-party, GA4, Pixel and CAPI. Raw event default retention is 13 months; daily rollups remain. Owner may set 1–60 months.
+Tracking is default-on per product decision. The persistent privacy control is a static button at the bottom-right of each public/checkout footer, rather than a viewport-floating control. It switches collection off, deletes the anonymous session ID/cookie and stops first-party, GA4, Pixel and CAPI. Raw event default retention is 13 months; daily rollups remain. Owner may set 1–60 months.
 
 ## Status
 

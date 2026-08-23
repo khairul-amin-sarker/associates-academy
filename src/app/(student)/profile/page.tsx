@@ -12,12 +12,17 @@ export default async function ProfilePage({
 }) {
   const query = await searchParams;
   const context = await requireUser();
-  let profile: { full_name?: string | null; phone?: string | null } | null =
-    null;
+  let profile: {
+    full_name?: string | null;
+    phone?: string | null;
+    whatsapp_number?: string | null;
+    occupation?: string | null;
+    city?: string | null;
+  } | null = null;
   if (context.supabase) {
     const result = await context.supabase
       .from("profiles")
-      .select("full_name, phone")
+      .select("full_name, phone, whatsapp_number, occupation, city")
       .eq("id", context.userId)
       .maybeSingle();
     profile = result.data;
@@ -67,6 +72,35 @@ export default async function ProfilePage({
                 inputMode="tel"
                 defaultValue={profile?.phone ?? ""}
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="whatsapp_number">WhatsApp</Label>
+              <Input
+                id="whatsapp_number"
+                name="whatsapp_number"
+                required
+                minLength={8}
+                inputMode="tel"
+                defaultValue={profile?.whatsapp_number ?? ""}
+              />
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="occupation">Occupation</Label>
+                <Input
+                  id="occupation"
+                  name="occupation"
+                  defaultValue={profile?.occupation ?? ""}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="city">City</Label>
+                <Input
+                  id="city"
+                  name="city"
+                  defaultValue={profile?.city ?? ""}
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label>Email</Label>

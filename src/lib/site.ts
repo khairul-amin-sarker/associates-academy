@@ -5,11 +5,11 @@ export const siteConfig = {
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000"),
-  productionUrl: "https://associatesacademy.com.bd",
+  productionUrl: "https://www.associatesacademy.bd",
   description:
     "আয়কর, ভ্যাট, আইন ও Professional Compliance শেখার নির্ভরযোগ্য প্ল্যাটফর্ম।",
   supportEmail: "contact@associatesacademy.bd",
-  securityEmail: "security@associatesacademy.com.bd",
+  securityEmail: "security@associatesacademy.bd",
   socials: {
     facebook: "https://facebook.com/associatesacademy",
     youtube: "https://youtube.com/@associatesacademy",
@@ -18,9 +18,9 @@ export const siteConfig = {
 } as const;
 
 export const navItems = [
+  { href: "/", label: "হোম" },
   { href: "/courses", label: "কোর্সসমূহ" },
-  { href: "/ebook", label: "eBook" },
-  { href: "/workshop", label: "ওয়ার্কশপ" },
   { href: "/resources", label: "রিসোর্স" },
+  { href: "/#tax-tools", label: "ট্যাক্স টুলস" },
   { href: "/about", label: "আমাদের সম্পর্কে" },
 ] as const;

@@ -1,11 +1,99 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, CalendarDays, CheckCircle2, Video } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { WorkshopLanding } from "@/components/marketing/workshop/workshop-landing";
+import { workshopConfig } from "@/lib/content/workshop";
+import { createPublicServerClient } from "@/lib/supabase/server";
 
-export const metadata: Metadata = { title: "Free Workshop", description: "Associates Academy-এর free live professional workshop." };
+export const metadata: Metadata = {
+  title: "Free Income Tax Return Workshop | Paper Return to NBR E-Return | Associates Academy",
+  description:
+    "২৬ আগস্ট রাত ৯টায় Free Live Workshop—Paper Return থেকে NBR E-Return পর্যন্ত Complete Income Tax Return Preparation একটি practical example-এর মাধ্যমে বুঝুন।",
+  alternates: {
+    canonical: "/workshop",
+  },
+  openGraph: {
+    title: "Free Income Tax Return Workshop | Paper Return to NBR E-Return",
+    description:
+      "২৬ আগস্ট রাত ৯টায় Free Live Workshop—Paper Return থেকে NBR E-Return পর্যন্ত Complete Income Tax Return Preparation একটি practical example-এর মাধ্যমে বুঝুন।",
+    url: "/workshop",
+    type: "website",
+    locale: "bn_BD",
+    siteName: "Associates Academy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Income Tax Return Workshop | Associates Academy",
+    description:
+      "২৬ আগস্ট রাত ৯টায় Free Live Workshop—Paper Return থেকে NBR E-Return পর্যন্ত Complete Return Preparation বুঝুন।",
+  },
+};
 
-export default function WorkshopPage() {
-  return <section className="py-14 sm:py-20"><div className="section-shell grid items-center gap-10 lg:grid-cols-2"><div><Badge variant="outline">FREE LIVE WORKSHOP</Badge><h1 className="font-heading mt-5 text-4xl font-extrabold sm:text-6xl">Income Tax Working Framework—orientation session</h1><p className="mt-5 text-lg leading-8 text-muted-foreground">Tax law শেখার সঠিক sequence, common confusion এবং practical preparation নিয়ে একটি focused live workshop।</p><div className="mt-7 space-y-3">{["Tax learning roadmap", "Act থেকে computation-এর connection", "Return readiness checklist"].map((item) => <p key={item} className="flex items-center gap-3 font-semibold"><CheckCircle2 className="h-5 w-5 text-brand-gold" />{item}</p>)}</div><Button size="lg" asChild className="mt-8"><Link href="/auth?next=/workshop/dashboard">Free registration<ArrowRight /></Link></Button></div><div className="paper-grid rounded-[2rem] bg-brand-navy p-8 text-white sm:p-10"><Video className="h-8 w-8 text-brand-gold" /><p className="mt-8 text-xs font-bold tracking-[0.16em] text-brand-gold uppercase">NEXT SESSION</p><h2 className="font-heading mt-3 text-3xl font-bold">Registration dashboard থেকে open হবে</h2><p className="mt-3 text-white/60">Admin workshop publish করলে date, time, Meet link এবং reminder এখানে live update হবে।</p><div className="mt-8 flex items-center gap-3 rounded-xl border border-white/10 bg-white/8 p-4"><CalendarDays className="h-5 w-5 text-brand-gold" /><span>Schedule will be announced</span></div></div></div></section>;
+const jsonLdEvent = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Free Income Tax Return Workshop: Paper Return থেকে NBR E-Return",
+  description:
+    "Paper Return থেকে NBR E-Return — Complete Return Preparation বুঝুন হাতে-কলমে। ২৬ আগস্ট রাত ৯টা, Google Meet।",
+  startDate: workshopConfig.startsAt,
+  endDate: workshopConfig.endsAt,
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location: {
+    "@type": "VirtualLocation",
+    url: "https://meet.google.com",
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Associates Academy",
+    url: "https://associatesacademy.bd",
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "BDT",
+    availability: "https://schema.org/InStock",
+    url: "https://associatesacademy.bd/workshop",
+  },
+  performer: {
+    "@type": "Person",
+    name: "Mohammad Khairul Amin Sarker",
+    jobTitle: "Income Tax Lawyer",
+  },
+};
+
+export default async function WorkshopPage() {
+  let initialWorkshop = undefined;
+
+  try {
+    const supabase = createPublicServerClient();
+    const { data: workshop } = await supabase
+      .from("workshops")
+      .select("status, registration_enabled, starts_at")
+      .in("slug", [
+        "paper-return-to-e-return-2026-08-26",
+        "paper-return-to-e-return-live-workshop",
+      ])
+      .order("id", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    if (workshop) {
+      initialWorkshop = {
+        status: workshop.status,
+        registrationEnabled: workshop.registration_enabled,
+        startsAt: workshop.starts_at,
+      };
+    }
+  } catch {
+    // Fall back to static config
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEvent) }}
+      />
+      <WorkshopLanding initialWorkshop={initialWorkshop} />
+    </>
+  );
 }

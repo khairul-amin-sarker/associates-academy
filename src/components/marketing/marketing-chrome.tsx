@@ -7,7 +7,12 @@ import { SiteHeader } from "@/components/marketing/site-header";
 export function MarketingChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  if (pathname === "/ebook" || pathname.startsWith("/ebook/")) {
+  if (
+    pathname === "/ebook" ||
+    pathname.startsWith("/ebook/") ||
+    pathname === "/checkout" ||
+    pathname.startsWith("/checkout/")
+  ) {
     return children;
   }
 

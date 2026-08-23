@@ -2,6 +2,12 @@
 
 Standalone academy platform for Bengali-first Tax, VAT, Legal and Professional Compliance learning.
 
+## Documentation and AI handoff
+
+Start with [AGENTS.md](AGENTS.md), then use [DOCUMENTATION.md](DOCUMENTATION.md) to select the exact product, UI, architecture, data, flow, security, analytics, and release document needed for the task. [DATA.md](DATA.md) is the authoritative map for where runtime/static data belongs and how it may be updated.
+
+Every meaningful change must update its owner documentation and append one new, self-contained sequential `LOG-XXXX` entry to [logs.md](logs.md). `logs.md` is append-only; inspect its last entry before writing a new one.
+
 ## Local development
 
 Requirements: Node.js 22+ and pnpm 11.
@@ -38,6 +44,6 @@ The migration creates the structured CMS, learning, commerce, certificate, email
 - `main` is production
 - Domain, branded email, OAuth, Meta, GA4 and live PayStation callbacks remain launch gates until credentials/DNS exist
 
-See `MIGRATION.md` and `security.md` before production changes.
+See `MIGRATION.md`, `security.md` and `PAYMENTS.md` before production/payment changes.
 
 The separate `Associates Academy Staging` Supabase project is active in `ap-south-1`; Vercel Preview uses its public URL/key. Production promotion remains intentionally gated.
