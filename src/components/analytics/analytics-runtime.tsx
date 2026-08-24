@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ShieldCheck, X } from "lucide-react";
@@ -10,23 +9,6 @@ import { Button } from "@/components/ui/button";
 const preferenceKey = "aa_analytics_preference";
 const sessionKey = "aa_analytics_session";
 const openPreferenceEvent = "aa:open-analytics-preferences";
-
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
-
-const metaEventNames: Record<string, string> = {
-  page_view: "PageView",
-  cta_click: "ViewContent",
-  checkout_started: "InitiateCheckout",
-  payment_initiated: "AddPaymentInfo",
-  verified_purchase: "Purchase",
-  workshop_registration: "Lead",
-  lead: "Lead",
-  complete_registration: "CompleteRegistration",
-};
 
 function readPreference() {
   if (typeof window === "undefined") return "enabled";
@@ -67,10 +49,6 @@ function sendEvent(name: string, properties: Record<string, unknown> = {}) {
       keepalive: true,
     });
   }
-  const metaEventName = metaEventNames[name];
-  if (metaEventName && window.fbq) {
-    window.fbq("track", metaEventName, properties, { eventID: eventId });
-  }
 }
 
 function Runtime() {
@@ -82,7 +60,6 @@ function Runtime() {
   const [panelOpen, setPanelOpen] = useState(false);
   const sentScroll = useRef(new Set<number>());
   const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "2240975830026173";
 
   useEffect(() => {
     if (preference === "disabled") return;
@@ -154,23 +131,6 @@ function Runtime() {
     <>
       {preference === "enabled" && gaId ? (
         <GoogleAnalytics gaId={gaId} />
-      ) : null}
-      {preference === "enabled" && metaPixelId ? (
-        <>
-          <Script id="meta-pixel" strategy="afterInteractive">
-            {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${metaPixelId}');fbq('track','PageView');`}
-          </Script>
-          <noscript>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              height="1"
-              width="1"
-              style={{ display: "none" }}
-              src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
-              alt=""
-            />
-          </noscript>
-        </>
       ) : null}
 
       {panelOpen ? (

@@ -53,14 +53,6 @@ export function WorkshopRegistrationForm({ initialWorkshop }: WorkshopRegistrati
         registration_code: state.registrationCode,
         intent: state.submittedData?.workshopIntent,
       });
-      if (typeof window !== "undefined" && window.fbq) {
-        window.fbq("track", "Lead", {
-          content_name: workshopConfig.title,
-          content_category: "Workshop Registration",
-          value: 0,
-          currency: "BDT",
-        });
-      }
     }
   }, [state.status, state.registrationCode, state.submittedData]);
 
