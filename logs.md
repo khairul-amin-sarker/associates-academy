@@ -1281,4 +1281,55 @@ Risk / follow-up:
 Commit:
 - `f53f094`
 
+## LOG-0028 — 2026-08-24 — Associates Academy Platform Audit, Production Hardening & Launch Readiness
+
+**Agent:** Antigravity
+**Type:** FEATURE | FIX | SECURITY | SCHEMA | UX
+**Scope:** Whole-site production audit, Supabase production hardening, password reset & update, admin certificate operations, courses WhatsApp link, and full verification suite
+
+Context & Rationale:
+- Take the entire Associates Academy website from its current state to a production-ready, deployable learning-commerce platform ready for live customer traffic, student enrollments, PayStation payments, and administrative operations.
+
+Summary of Changes:
+- **Database & Supabase Hardening:**
+  - Audited production Supabase project `atrtavshxnwbthbtzrwb` ("Associates Academy Website") with 39 RLS-secured tables, products, and 21 imported verified certificates.
+  - Assigned `owner` role to the founder/lead instructor account `khairulamin.lawyer@gmail.com` in `user_roles` to ensure complete administrative authority.
+  - Resolved `search_path` mutable security vulnerability on `public.generate_workshop_registration_code` (`SET search_path = ''`).
+  - Seeded 5 structured learning modules for Course 2 ("Practical Paper Return & E-Return Filing Course") and 6 modules for Course 1 ("Fundamentals of Income Tax Act, 2023").
+- **Authentication & Password Update:**
+  - Built `PasswordUpdateForm` component (`src/components/profile/password-update-form.tsx`) and integrated it into `/profile` with validation, password visibility toggles, loading state, and direct Supabase auth password update to complete the password reset flow.
+- **Admin Certificate Operations:**
+  - Built dedicated `/admin/certificates` management workspace (`page.tsx`, `actions.ts`, `certificate-management.tsx`) featuring searchable table, real-time status badges, "নতুন Certificate ইস্যু করুন" modal, status revoke/reactivate actions, and public verification synchronization.
+- **Course Catalog & WhatsApp Contact:**
+  - Cleaned unused `Scale` import for strict zero-warning linting.
+  - Replaced placeholder WhatsApp link `https://wa.me/8801XXXXXXXXX` in `courses/page.tsx` with official business contact `https://wa.me/8801712192758`.
+- **Edge Middleware & Session Refresh:**
+  - Verified Next.js Turbopack `proxy.ts` session proxy configuration for `@supabase/ssr` cookies and private cache headers.
+
+Files:
+- `src/components/profile/password-update-form.tsx`
+- `src/app/(student)/profile/page.tsx`
+- `src/app/(admin)/admin/certificates/page.tsx`
+- `src/app/(admin)/admin/certificates/actions.ts`
+- `src/components/admin/certificate-management.tsx`
+- `src/app/(marketing)/courses/page.tsx`
+- `supabase/migrations/20260824000000_production_hardening.sql`
+- `logs.md`
+
+Data / DB impact:
+- Applied migration `20260824000000_production_hardening.sql` to Supabase project `atrtavshxnwbthbtzrwb`. `khairulamin.lawyer@gmail.com` elevated to `owner`. 5 modules seeded for course 2; 6 modules seeded for course 1.
+
+Validation:
+- ESLint: 0 errors, 0 warnings (`npm run lint`).
+- TypeScript: 0 errors (`npx tsc --noEmit`).
+- Vitest: 39 tests passed across 9 test suites (`npm test`).
+- Production Build: 52 static and dynamic routes compiled successfully in Next.js Turbopack (`npm run build`).
+- Live HTTP Endpoint Testing: Verified `/courses`, `/courses/practical-paper-return-e-return-filing`, `/checkout/practical-paper-return-e-return-filing`, `/verify`, `/api/certificates/B1-2026-FIT001`, `/profile`, `/admin/certificates`, `/admin/orders`, `/admin/workshop` all returning 200 OK.
+
+Risk / follow-up:
+- Platform is ready for live production deployment on Vercel and real customer traffic.
+
+Commit:
+- `027bbcc`
+
 

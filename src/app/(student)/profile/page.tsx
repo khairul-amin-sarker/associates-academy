@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { PasswordUpdateForm } from "@/components/profile/password-update-form";
 import { saveProfile } from "./actions";
 
 export default async function ProfilePage({
@@ -28,11 +29,17 @@ export default async function ProfilePage({
     profile = result.data;
   }
   return (
-    <div>
-      <h1 className="font-heading text-4xl font-extrabold">Profile</h1>
-      <Card className="mt-8 max-w-2xl">
+    <div className="space-y-8">
+      <div>
+        <h1 className="font-heading text-brand-navy text-3xl sm:text-4xl font-extrabold">Profile</h1>
+        <p className="text-muted-foreground mt-1 text-sm">
+          আপনার ব্যক্তিগত বিবরণ এবং অ্যাকাউন্ট সেটিংস পরিচালনা করুন।
+        </p>
+      </div>
+
+      <Card className="max-w-2xl border-brand-navy/10 shadow-sm">
         <CardHeader>
-          <CardTitle className="font-heading">ব্যক্তিগত তথ্য</CardTitle>
+          <CardTitle className="font-heading text-xl text-brand-navy">ব্যক্তিগত তথ্য</CardTitle>
         </CardHeader>
         <CardContent>
           <form action={saveProfile} className="grid gap-5">
@@ -112,6 +119,9 @@ export default async function ProfilePage({
           </form>
         </CardContent>
       </Card>
+
+      <PasswordUpdateForm />
     </div>
   );
 }
+
